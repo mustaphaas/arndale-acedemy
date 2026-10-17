@@ -420,7 +420,6 @@ export function StudentDashboard() {
     <div className="content-wrap">
       <section className="welcome-banner" id="overview">
         <div className="welcome-copy">
-          <span className="welcome-kicker"><IconSparkles size={15} /> A fresh page awaits</span>
           <h1>Good morning, Oliver!</h1>
           <p>A new day, a new little adventure. Let’s grow!</p>
           <div className="welcome-pills"><span><IconBook size={14} /> 3 lessons today</span><span><IconPencil size={14} /> {assignments.filter((item) => !item.completed).length} tasks to try</span></div>
