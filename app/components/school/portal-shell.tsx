@@ -2,7 +2,6 @@ import {
   IconArrowUpRight,
   IconBook2,
   IconCalendarWeek,
-  IconChevronDown,
   IconClipboardCheck,
   IconHeartHandshake,
   IconHelpCircle,
@@ -10,11 +9,9 @@ import {
   IconLeaf,
   IconLogout,
   IconMenu2,
-  IconPalette,
   IconSchool,
   IconSeedling,
   IconUsers,
-  IconVolume,
 } from "@tabler/icons-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router";
@@ -38,16 +35,17 @@ import {
 import { viewForPath } from "@/lib/portal-navigation";
 import { signOut } from "@/lib/portal-session";
 import { SAMPLE_LEARNER, SCHOOL_NAME, type PortalRole } from "@/lib/school";
+import { IOSIcon, type IOSIconName } from "@/components/school/ios-icons";
 
 import "@/styles/school-portal.css";
 
-const studentNavigation = [
-  { label: "My day", section: "overview", icon: IconHome2 },
-  { label: "My lessons", section: "lessons", icon: IconBook2 },
-  { label: "My homework", section: "homework", icon: IconClipboardCheck },
-  { label: "My progress", section: "progress", icon: IconSeedling },
-  { label: "My timetable", section: "timetable", icon: IconCalendarWeek },
-  { label: "A helping hand", section: "help", icon: IconHeartHandshake },
+const studentNavigation: Array<{ label: string; section: string; iosIcon: IOSIconName }> = [
+  { label: "My day", section: "overview", iosIcon: "home" },
+  { label: "My lessons", section: "lessons", iosIcon: "book" },
+  { label: "My homework", section: "homework", iosIcon: "checklist" },
+  { label: "My progress", section: "progress", iosIcon: "sprout" },
+  { label: "My timetable", section: "timetable", iosIcon: "calendar" },
+  { label: "A helping hand", section: "help", iosIcon: "support" },
 ];
 
 const parentNavigation = [
@@ -79,7 +77,7 @@ export function SchoolBrand() {
   return (
     <Link className="school-brand" to="/" aria-label={`${SCHOOL_NAME} home`}>
       <span className="school-brand-mark">
-        <IconLeaf size={25} stroke={1.7} />
+        <IOSIcon name="leaf" size={24} />
       </span>
       <span>
         <strong>{SCHOOL_NAME}</strong>
@@ -101,17 +99,17 @@ export function PortalShell({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
   const [signOutError, setSignOutError] = useState("");
-  const [studentTheme, setStudentTheme] = useState<"garden" | "sky" | "sunshine" | "midnight">("garden");
+  const [studentTheme, setStudentTheme] = useState<"garden" | "sky" | "sunshine" | "midnight" | "glass">("garden");
 
   useEffect(() => {
     if (role !== "student") return;
     const saved = window.localStorage.getItem("arndale-academy.student-theme");
-    if (saved === "garden" || saved === "sky" || saved === "sunshine" || saved === "midnight") {
+    if (saved === "garden" || saved === "sky" || saved === "sunshine" || saved === "midnight" || saved === "glass") {
       setStudentTheme(saved);
     }
   }, [role]);
 
-  function chooseStudentTheme(theme: "garden" | "sky" | "sunshine" | "midnight") {
+  function chooseStudentTheme(theme: "garden" | "sky" | "sunshine" | "midnight" | "glass") {
     setStudentTheme(theme);
     try {
       window.localStorage.setItem("arndale-academy.student-theme", theme);
@@ -155,25 +153,34 @@ export function PortalShell({ children }: { children: ReactNode }) {
         aria-label={`${portalLabels[role]} navigation`}
         className="school-nav"
       >
-        {navigation.map(({ label, section: target, icon: Icon }) => (
-          <Link
-            key={target}
-            to={`${basePath}#${target}`}
-            className={`school-nav-link${section === target ? " is-active" : ""}`}
-            aria-current={section === target ? "location" : undefined}
-            onClick={() => setMenuOpen(false)}
-          >
-            <Icon size={19} stroke={role === "student" ? 1.45 : 1.65} />
-            <span>{label}</span>
-            {section === target && (
-              <span className="school-active-dot" aria-hidden="true" />
-            )}
-          </Link>
-        ))}
+        {navigation.map((item) => {
+          const target = item.section;
+          const label = item.label;
+          const LegacyIcon = "icon" in item ? item.icon : null;
+          return (
+            <Link
+              key={target}
+              to={`${basePath}#${target}`}
+              className={`school-nav-link${section === target ? " is-active" : ""}`}
+              aria-current={section === target ? "location" : undefined}
+              onClick={() => setMenuOpen(false)}
+            >
+              {role === "student" && "iosIcon" in item ? (
+                <IOSIcon name={item.iosIcon} size={19} />
+              ) : LegacyIcon ? (
+                <LegacyIcon size={19} stroke={1.65} />
+              ) : null}
+              <span>{label}</span>
+              {section === target && (
+                <span className="school-active-dot" aria-hidden="true" />
+              )}
+            </Link>
+          );
+        })}
       </nav>
       <div className="school-sidebar-note">
         <span className="school-note-icon">
-          <IconSeedling size={28} stroke={1.4} />
+          {role === "student" ? <IOSIcon name="sprout" size={27} /> : <IconSeedling size={28} stroke={1.4} />}
         </span>
         <strong>
           {role === "student" ? "A little every day." : "Better, together."}
@@ -191,7 +198,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
             className="school-nav-link"
             onClick={() => setMenuOpen(false)}
           >
-            <IconHelpCircle size={20} stroke={1.65} />
+            {role === "student" ? <IOSIcon name="help" size={19} /> : <IconHelpCircle size={20} stroke={1.65} />}
             <span>Need a hand?</span>
           </Link>
         )}
@@ -200,7 +207,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
           onClick={logOut}
           disabled={signingOut}
         >
-          <IconLogout size={20} stroke={1.65} />
+          {role === "student" ? <IOSIcon name="logout" size={19} /> : <IconLogout size={20} stroke={1.65} />}
           <span>
             {signingOut ? "Signing out…" : "Logout"}
           </span>
@@ -227,7 +234,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
                   className="school-mobile-menu"
                   aria-label="Open navigation"
                 >
-                  <IconMenu2 size={21} />
+                  {role === "student" ? <IOSIcon name="menu" size={20} /> : <IconMenu2 size={21} />}
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="school-mobile-sheet">
@@ -259,7 +266,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
                   window.dispatchEvent(new CustomEvent("arndale:read-to-me"))
                 }
               >
-                <IconVolume size={17} stroke={1.7} />
+                <IOSIcon name="volume" size={17} />
                 Read to me
               </Button>
             )}
@@ -275,7 +282,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
                       <strong>{SAMPLE_LEARNER.name}</strong>
                       <small>{SAMPLE_LEARNER.className}</small>
                     </span>
-                    <IconChevronDown size={15} aria-hidden="true" />
+                    <IOSIcon name="chevronDown" size={15} aria-hidden="true" />
                   </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="school-profile-menu">
@@ -285,13 +292,14 @@ export function PortalShell({ children }: { children: ReactNode }) {
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuLabel className="school-theme-label">
-                    <IconPalette size={15} /> Dashboard theme
+                    <IOSIcon name="palette" size={15} /> Dashboard theme
                   </DropdownMenuLabel>
                   {([
                     ["garden", "Garden"],
                     ["sky", "Sky"],
                     ["sunshine", "Sunshine"],
                     ["midnight", "Midnight"],
+                    ["glass", "Clear Glass"],
                   ] as const).map(([value, label]) => (
                     <DropdownMenuItem
                       key={value}
@@ -309,7 +317,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
                     disabled={signingOut}
                     className="school-profile-logout"
                   >
-                    <IconLogout size={16} />
+                    <IOSIcon name="logout" size={16} />
                     {signingOut ? "Logging out…" : "Logout"}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
