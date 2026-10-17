@@ -18,7 +18,7 @@ import { z } from "zod";
 
 export default defineAction({
   description:
-    "Navigate the UI to a specific view or path. Writes a navigate command to application state which the UI reads and auto-deletes. The default product surface is the home canvas at /; agent chat stays in the right rail.",
+    "Navigate to a school portal: student (/student or /), parent (/parent), or teacher (/teacher). A path can include a section such as /parent#homework. Writes the command to the current tab's application state.",
   schema: z.object({
     view: z.string().optional().describe("View name to navigate to"),
     path: z.string().optional().describe("URL path to navigate to"),

@@ -1,8 +1,10 @@
-import { createAuthPlugin } from "@agent-native/core/server";
+import { createAuthPlugin, getAppBasePath } from "@agent-native/core/server";
 
-// Email/password auth with optional Google OAuth (enabled automatically when
-// GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET are set). No marketing copy — a
-// blank app defines its own brand on the login page when it needs one by setting loginHtml in this config.
+import { createPortalLoginHtml } from "../lib/portal-login";
+
+// Branding replaces only the sign-in document. Framework sessions, route
+// protection, and the existing authenticated home at / remain in place.
 export default createAuthPlugin({
-  rootAuth: false, // auth is not serverd on / by default
+  rootAuth: false,
+  loginHtml: createPortalLoginHtml({ basePath: getAppBasePath() }),
 });
