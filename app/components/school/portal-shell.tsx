@@ -2,7 +2,6 @@ import {
   IconArrowUpRight,
   IconBook2,
   IconCalendarWeek,
-  IconChevronDown,
   IconClipboardCheck,
   IconHeartHandshake,
   IconHelpCircle,
@@ -10,11 +9,9 @@ import {
   IconLeaf,
   IconLogout,
   IconMenu2,
-  IconPalette,
   IconSchool,
   IconSeedling,
   IconUsers,
-  IconVolume,
 } from "@tabler/icons-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router";
@@ -80,7 +77,7 @@ export function SchoolBrand() {
   return (
     <Link className="school-brand" to="/" aria-label={`${SCHOOL_NAME} home`}>
       <span className="school-brand-mark">
-        <IconLeaf size={25} stroke={1.7} />
+        <IOSIcon name="leaf" size={24} />
       </span>
       <span>
         <strong>{SCHOOL_NAME}</strong>
