@@ -362,6 +362,60 @@ export function StudentDashboard() {
       </div>
 
       {activeView === "overview" && (
+        <section
+          className="sd-today-timetable"
+          id="timetable"
+          aria-labelledby="sd-today-timetable-title"
+        >
+          <div className="sd-section-heading">
+            <div>
+              <span className="sd-timetable-kicker">TODAY</span>
+              <h2 id="sd-today-timetable-title">My timetable</h2>
+            </div>
+            <IOSIcon name="calendar" size={20} />
+          </div>
+          <div className="sd-timetable-strip" role="list" aria-label="Today's timetable">
+            {SAMPLE_LESSONS.map((lesson, index) => (
+              <Link
+                key={lesson.subject}
+                to="/student#learn"
+                className={`sd-timetable-card sd-tone-${lesson.tone}`}
+                onClick={() => setLessonIndex(index)}
+                role="listitem"
+              >
+                <span className="sd-timetable-icon">
+                  <IOSIcon name={lesson.iosIcon} size={20} />
+                </span>
+                <strong>{lesson.subject}</strong>
+                <small>{lesson.time}</small>
+              </Link>
+            ))}
+            <article className="sd-timetable-card sd-tone-mint" role="listitem">
+              <span className="sd-timetable-icon">
+                <IOSIcon name="heart" size={20} />
+              </span>
+              <strong>Lunch & play</strong>
+              <small>12:00–13:00</small>
+            </article>
+            <article className="sd-timetable-card sd-tone-yellow" role="listitem">
+              <span className="sd-timetable-icon">
+                <IOSIcon name="pencil" size={20} />
+              </span>
+              <strong>Art time</strong>
+              <small>13:00–14:00</small>
+            </article>
+            <article className="sd-timetable-card sd-tone-blue" role="listitem">
+              <span className="sd-timetable-icon">
+                <IOSIcon name="book" size={20} />
+              </span>
+              <strong>Story circle</strong>
+              <small>14:15–14:45</small>
+            </article>
+          </div>
+        </section>
+      )}
+
+      {activeView === "overview" && (
         <nav className="sd-home-launcher" aria-label="Choose what to do next">
           <Link to="/student#learn">
             <span className="sd-launch-icon sd-tone-blue"><IOSIcon name="book" size={23} /></span>
@@ -825,7 +879,7 @@ export function StudentDashboard() {
 
           <section
             className="sd-panel sd-timetable"
-            id="timetable"
+            id="after-lessons"
             aria-labelledby="sd-timetable-title"
           >
             <div className="sd-section-heading">
