@@ -10,11 +10,12 @@ import {
   IconLeaf,
   IconLogout,
   IconMenu2,
+  IconPalette,
   IconSchool,
   IconSeedling,
   IconUsers,
 } from "@tabler/icons-react";
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router";
 
 import { Button } from "@/components/ui/button";
@@ -99,6 +100,24 @@ export function PortalShell({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
   const [signOutError, setSignOutError] = useState("");
+  const [studentTheme, setStudentTheme] = useState<"garden" | "sky" | "sunshine">("garden");
+
+  useEffect(() => {
+    if (role !== "student") return;
+    const saved = window.localStorage.getItem("arndale-academy.student-theme");
+    if (saved === "garden" || saved === "sky" || saved === "sunshine") {
+      setStudentTheme(saved);
+    }
+  }, [role]);
+
+  function chooseStudentTheme(theme: "garden" | "sky" | "sunshine") {
+    setStudentTheme(theme);
+    try {
+      window.localStorage.setItem("arndale-academy.student-theme", theme);
+    } catch {
+      // The visual change still applies for this session.
+    }
+  }
   const basePath =
     role === "parent"
       ? "/parent"
@@ -197,7 +216,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
   );
 
   return (
-    <div className={`school-shell school-${role}`}>
+    <div className={`school-shell school-${role}${role === "student" ? ` student-theme-${studentTheme}` : ""}`}>
       <a className="school-skip-link" href="#portal-content">
         Skip to dashboard
       </a>
@@ -265,28 +284,69 @@ export function PortalShell({ children }: { children: ReactNode }) {
               </DropdownMenuContent>
             </DropdownMenu>
             <span className="school-header-separator" />
-            <div className="school-account">
-              <span
-                className={`school-account-avatar${role === "parent" ? " is-parent" : ""}`}
-                aria-hidden="true"
-              >
-                {role === "teacher"
-                  ? "MT"
-                  : role === "parent"
-                    ? "JF"
-                    : SAMPLE_LEARNER.initials}
-              </span>
-              <span className="school-account-copy">
-                <strong>
-                  {role === "teacher"
-                    ? SAMPLE_LEARNER.teacher
-                    : role === "parent"
-                      ? "James family"
-                      : SAMPLE_LEARNER.name}
-                </strong>
-                <small>Sample profile</small>
-              </span>
-            </div>
+            {role === "student" ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="school-account school-account-button" type="button">
+                    <span className="school-account-avatar" aria-hidden="true">
+                      {SAMPLE_LEARNER.initials}
+                    </span>
+                    <span className="school-account-copy">
+                      <strong>{SAMPLE_LEARNER.name}</strong>
+                      <small>{SAMPLE_LEARNER.className}</small>
+                    </span>
+                    <IconChevronDown size={15} aria-hidden="true" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="school-profile-menu">
+                  <DropdownMenuLabel>
+                    <span className="school-profile-name">{SAMPLE_LEARNER.name}</span>
+                    <span className="school-profile-class">{SAMPLE_LEARNER.className}</span>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuLabel className="school-theme-label">
+                    <IconPalette size={15} /> Dashboard theme
+                  </DropdownMenuLabel>
+                  {([
+                    ["garden", "Garden"],
+                    ["sky", "Sky"],
+                    ["sunshine", "Sunshine"],
+                  ] as const).map(([value, label]) => (
+                    <DropdownMenuItem
+                      key={value}
+                      onSelect={() => chooseStudentTheme(value)}
+                      className="school-theme-option"
+                    >
+                      <span className={`school-theme-swatch is-${value}`} aria-hidden="true" />
+                      {label}
+                      {studentTheme === value ? <span className="school-theme-selected">Selected</span> : null}
+                    </DropdownMenuItem>
+                  ))}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onSelect={() => void logOut()}
+                    disabled={signingOut}
+                    className="school-profile-logout"
+                  >
+                    <IconLogout size={16} />
+                    {signingOut ? "Logging out…" : "Logout"}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <div className="school-account">
+                <span
+                  className={`school-account-avatar${role === "parent" ? " is-parent" : ""}`}
+                  aria-hidden="true"
+                >
+                  {role === "teacher" ? "MT" : "JF"}
+                </span>
+                <span className="school-account-copy">
+                  <strong>{role === "teacher" ? SAMPLE_LEARNER.teacher : "James family"}</strong>
+                  <small>Sample profile</small>
+                </span>
+              </div>
+            )}
           </div>
         </header>
         {signOutError && (
