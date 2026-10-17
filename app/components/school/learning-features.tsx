@@ -435,12 +435,30 @@ export function ParentIntelligenceHub({
             <span>Needs a little practice</span>
             {insight.needsPractice.map((item) => <strong key={item.topic}>{item.topic} · {item.score}%</strong>)}
           </article>
+          <article>
+            <span>Latest reading coach</span>
+            <strong>{insight.lastReading ? `${insight.lastReading.accuracy}% word match` : "No reading attempt yet"}</strong>
+            <p>{insight.lastReading ? "Use the next attempt to improve smoothness and expression." : "Oliver can make a first recording from the student Reading Coach."}</p>
+          </article>
           <article className="lf-parent-recommendation">
             <span>Try this at home</span>
             <p>{insight.recommendation}</p>
           </article>
         </div>
         <MasteryBars />
+        <div className="lf-family-portfolio">
+          <div>
+            <strong>Recent portfolio</strong>
+            <span>Projects and achievements saved by Oliver</span>
+          </div>
+          {state.portfolio.slice(0, 3).map((item) => (
+            <article key={item.id}>
+              <small>{item.category}</small>
+              <strong>{item.title}</strong>
+              <p>{item.note}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="lf-section" id="alerts" aria-labelledby="lf-alerts-title">
@@ -607,6 +625,13 @@ export function TeacherAIHub({
           <span className="lf-icon-bubble"><IOSIcon name="info" size={23} /></span>
         </div>
         <div className="lf-warning-list">
+          {state.readingAttempts[0] && (
+            <article className={state.readingAttempts[0].accuracy < 65 ? "is-high" : "is-medium"}>
+              <strong>Oliver James · latest reading coach</strong>
+              <p>Latest word match: {state.readingAttempts[0].accuracy}%.</p>
+              <span>{state.readingAttempts[0].accuracy < 65 ? "Use a shorter passage and practise difficult words first." : "Repeat the passage once for fluency and expression."}</span>
+            </article>
+          )}
           {warnings.map((warning) => (
             <article className={`is-${warning.severity}`} key={warning.title}>
               <strong>Oliver James · {warning.title}</strong>
