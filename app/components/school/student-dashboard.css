@@ -1866,3 +1866,88 @@
     padding-inline: 8px;
   }
 }
+
+
+/* Integrated cat banner: no separate square artwork tile */
+.student-dashboard .sd-welcome {
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 34%);
+}
+.student-dashboard .sd-banner-art {
+  min-height: 154px;
+  overflow: visible;
+  background: transparent !important;
+}
+.student-dashboard .sd-banner-art::before {
+  display: none;
+}
+.student-dashboard .sd-banner-cat {
+  right: -2px;
+  bottom: -4px;
+  width: min(100%, 250px);
+  max-height: 156px;
+  object-fit: contain;
+  object-position: right bottom;
+  filter: drop-shadow(0 12px 20px rgba(56, 78, 66, .10));
+}
+.student-dashboard .sd-banner-sun {
+  top: 22px;
+  right: 72%;
+  opacity: .88;
+}
+
+.school-student.student-theme-glass .student-dashboard .sd-welcome {
+  min-height: 154px;
+  border-color: rgba(255,255,255,.58);
+  background:
+    radial-gradient(circle at 88% 12%, rgba(142,233,200,.20), transparent 34%),
+    radial-gradient(circle at 8% 100%, rgba(255,215,118,.20), transparent 30%),
+    linear-gradient(112deg, rgba(243,246,253,.58), rgba(232,237,249,.34));
+  box-shadow:
+    0 16px 40px rgba(83,96,121,.08),
+    inset 0 1px 0 rgba(255,255,255,.82);
+  backdrop-filter: blur(24px) saturate(145%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
+}
+.school-student.student-theme-glass .student-dashboard .sd-welcome-copy {
+  padding: 25px 28px;
+}
+.school-student.student-theme-glass .student-dashboard .sd-welcome h2 {
+  color: #31384d;
+}
+.school-student.student-theme-glass .student-dashboard .sd-welcome-copy > p {
+  color: #6c7488;
+}
+.school-student.student-theme-glass .student-dashboard .sd-welcome-pills > span {
+  border-color: rgba(255,255,255,.58);
+  background: rgba(255,255,255,.30);
+  color: #5c6378;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
+  backdrop-filter: blur(14px);
+}
+.school-student.student-theme-glass .student-dashboard .sd-banner-cat {
+  filter: drop-shadow(0 12px 22px rgba(60,73,96,.12));
+}
+
+@media (max-width: 720px) {
+  .student-dashboard .sd-welcome {
+    grid-template-columns: minmax(0, 1fr) 155px;
+  }
+  .student-dashboard .sd-banner-art {
+    min-height: 138px;
+  }
+  .student-dashboard .sd-banner-cat {
+    right: -18px;
+    bottom: -2px;
+    width: 210px;
+    max-height: 140px;
+  }
+}
+
+@media (max-width: 520px) {
+  .student-dashboard .sd-welcome {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .student-dashboard .sd-banner-art {
+    display: none;
+  }
+}
