@@ -296,8 +296,12 @@ export function StudentDashboard() {
           </div>
           <div className="sd-banner-art" aria-hidden="true">
             <span className="sd-banner-sun" />
-            <IconLeaf className="sd-banner-leaf" />
-            <IconPencil className="sd-banner-pencil" />
+            <img
+              className="sd-banner-cat"
+              src="/cat-reading-book.svg"
+              alt=""
+              draggable={false}
+            />
           </div>
         </div>
         {(speechError && !selectedTask) || speechAvailable === false ? (
