@@ -126,6 +126,19 @@ export function StudentDashboard() {
   const visibleAssignments = filterHomework(assignments, filter);
 
   useEffect(() => {
+    const section = location.hash.replace(/^#/, "");
+    if (section === "ai-companion") setLearnTool("ai");
+    if (section === "reading-coach") setLearnTool("reading");
+    if (section === "lessons") setLearnTool("lessons");
+    if (section === "learning-path") setPracticeTool("path");
+    if (section === "homework-help") setPracticeTool("hints");
+    if (section === "homework") setPracticeTool("homework");
+    if (section === "mastery") setProgressTool("mastery");
+    if (section === "rewards") setProgressTool("rewards");
+    if (section === "progress") setProgressTool("overview");
+  }, [location.hash]);
+
+  useEffect(() => {
     setSpeechAvailable(
       "speechSynthesis" in window &&
         typeof window.SpeechSynthesisUtterance === "function",
