@@ -494,7 +494,7 @@ export function StudentDashboard() {
                       }
                     >
                       <span>Open my task</span>
-                      <IconArrowRight aria-hidden="true" />
+                      <IOSIcon name="arrowRight" size={18} />
                     </Button>
                   </article>
                 ) : (
@@ -579,7 +579,7 @@ export function StudentDashboard() {
                               }
                             >
                               Open
-                              <IconArrowRight aria-hidden="true" />
+                              <IOSIcon name="arrowRight" size={18} />
                             </Button>
                           </li>
                         );
@@ -792,9 +792,9 @@ export function StudentDashboard() {
                 aria-pressed={speaking === "task"}
               >
                 {speaking === "task" ? (
-                  <IconVolumeOff aria-hidden="true" />
+                  <IOSIcon name="volumeOff" size={18} />
                 ) : (
-                  <IconVolume aria-hidden="true" />
+                  <IOSIcon name="volume" size={18} />
                 )}
                 {speaking === "task" ? "Stop reading" : "Read the instructions"}
               </Button>
@@ -846,7 +846,7 @@ export function StudentDashboard() {
                   "Move back to to do"
                 ) : (
                   <>
-                    <IconCheck aria-hidden="true" />
+                    <IOSIcon name="check" size={18} />
                     I’ve finished
                   </>
                 )}
