@@ -20,7 +20,6 @@ import { STORAGE_KEY } from "./assignment-store";
 import { DemoHome } from "./demo-home";
 
 import "../app/global.css";
-import "./styles.css";
 
 function LocalDemoSync() {
   useAssignmentSnapshot();
