@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { IOSIcon } from "@/components/school/ios-icons";
@@ -418,6 +418,10 @@ export function StudentWorkExtras({ assignments, view }: { assignments: Assignme
   const state = useStudentExperience();
   const [submissionTaskId, setSubmissionTaskId] = useState(assignments[0]?.id ?? "");
   const [answer, setAnswer] = useState("");
+
+  useEffect(() => {
+    if (!submissionTaskId && assignments[0]) setSubmissionTaskId(assignments[0].id);
+  }, [assignments, submissionTaskId]);
   const [noteTitle, setNoteTitle] = useState("");
   const [noteBody, setNoteBody] = useState("");
   const [noteSubject, setNoteSubject] = useState("General");
