@@ -41,17 +41,10 @@ import "@/styles/school-portal.css";
 
 const studentNavigation: Array<{ label: string; section: string; iosIcon: IOSIconName }> = [
   { label: "My day", section: "overview", iosIcon: "home" },
-  { label: "My lessons", section: "lessons", iosIcon: "book" },
-  { label: "My homework", section: "homework", iosIcon: "checklist" },
-  { label: "AI companion", section: "ai-companion", iosIcon: "sparkles" },
-  { label: "Learning path", section: "learning-path", iosIcon: "sprout" },
-  { label: "Reading coach", section: "reading-coach", iosIcon: "volume" },
-  { label: "Mastery map", section: "mastery", iosIcon: "trophy" },
-  { label: "Rewards", section: "rewards", iosIcon: "sparkles" },
-  { label: "Homework help", section: "homework-help", iosIcon: "help" },
-  { label: "My portfolio", section: "portfolio", iosIcon: "clipboard" },
-  { label: "My timetable", section: "timetable", iosIcon: "calendar" },
-  { label: "A helping hand", section: "help", iosIcon: "support" },
+  { label: "Learn", section: "learn", iosIcon: "book" },
+  { label: "Practice", section: "practice", iosIcon: "checklist" },
+  { label: "Progress", section: "progress", iosIcon: "trophy" },
+  { label: "My work", section: "work", iosIcon: "clipboard" },
 ];
 
 const parentNavigation = [
@@ -263,8 +256,10 @@ export function PortalShell({ children }: { children: ReactNode }) {
               <span>{portalLabels[role]}</span>
               <span className="school-location-divider">/</span>
               <strong>
-                {navigation.find((item) => item.section === section)?.label ||
-                  navigation[0].label}
+                {section === "help"
+                  ? "A helping hand"
+                  : navigation.find((item) => item.section === section)?.label ||
+                    navigation[0].label}
               </strong>
             </div>
           </div>
