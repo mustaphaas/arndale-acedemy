@@ -49,13 +49,13 @@ const studentGlassStyles = `
   .student-portal {
     --student-ink: #293b4b;
     --student-muted: #71808d;
-    background: linear-gradient(125deg, #f5f7f8 0%, #eef2f6 48%, #f7f1f4 100%);
+    background: radial-gradient(ellipse at 9% 8%, rgba(248, 217, 228, .58), transparent 31%), radial-gradient(ellipse at 87% 18%, rgba(194, 220, 244, .62), transparent 34%), radial-gradient(ellipse at 72% 91%, rgba(215, 237, 220, .58), transparent 36%), linear-gradient(125deg, #f7f8fa 0%, #eef2f6 48%, #f8f3f7 100%);
     color: var(--student-ink);
   }
   .student-portal .portal-sidebar {
     border-right: 1px solid rgba(255, 255, 255, .84);
-    background: linear-gradient(165deg, rgba(255,255,255,.84), rgba(245,248,252,.72) 58%, rgba(248,239,246,.78));
-    box-shadow: 10px 0 34px rgba(76, 96, 118, .07);
+    background: linear-gradient(165deg, rgba(255,255,255,.72), rgba(245,248,252,.54) 58%, rgba(248,239,246,.6));
+    box-shadow: 10px 0 34px rgba(76, 96, 118, .09), inset -1px 0 rgba(255,255,255,.55);
     backdrop-filter: blur(28px) saturate(145%);
     -webkit-backdrop-filter: blur(28px) saturate(145%);
   }
@@ -66,10 +66,10 @@ const studentGlassStyles = `
   }
   .student-portal .profile-card {
     border: 1px solid rgba(255,255,255,.84);
-    background: rgba(255,255,255,.48);
-    box-shadow: 0 8px 22px rgba(69, 89, 112, .055), inset 0 1px rgba(255,255,255,.75);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    background: linear-gradient(135deg, rgba(255,255,255,.58), rgba(255,255,255,.28));
+    box-shadow: 0 8px 22px rgba(69, 89, 112, .075), inset 0 1px rgba(255,255,255,.9), inset 0 -1px rgba(255,255,255,.22);
+    backdrop-filter: blur(24px) saturate(155%);
+    -webkit-backdrop-filter: blur(24px) saturate(155%);
   }
   .student-portal .side-link { color: #586a79; }
   .student-portal .side-link:hover,
@@ -121,10 +121,10 @@ const studentGlassStyles = `
   .student-portal .content-wrap { max-width: 1180px; }
   .student-portal .welcome-banner {
     border: 1px solid rgba(255,255,255,.93);
-    background: linear-gradient(112deg, rgba(255,255,255,.82), rgba(229,241,236,.7) 57%, rgba(226,235,247,.72));
-    box-shadow: 0 14px 36px rgba(72, 93, 115, .08), inset 0 1px 0 rgba(255,255,255,.96);
-    backdrop-filter: blur(28px) saturate(142%);
-    -webkit-backdrop-filter: blur(28px) saturate(142%);
+    background: linear-gradient(112deg, rgba(255,255,255,.72), rgba(229,241,236,.54) 57%, rgba(226,235,247,.56));
+    box-shadow: 0 16px 40px rgba(72, 93, 115, .11), inset 0 1px 0 rgba(255,255,255,.98), inset 0 -1px rgba(255,255,255,.25);
+    backdrop-filter: blur(34px) saturate(155%);
+    -webkit-backdrop-filter: blur(34px) saturate(155%);
   }
   .student-portal .welcome-copy h1 { color: #293d4b; }
   .student-portal .welcome-copy p { color: #687b84; }
@@ -142,16 +142,16 @@ const studentGlassStyles = `
   .student-portal .section-heading p { color: #84919c; }
   .student-portal .text-link { color: #527f77; }
   .student-portal .lesson-card {
-    border: 1px solid rgba(255,255,255,.87);
-    box-shadow: 0 10px 22px rgba(74, 93, 113, .065), inset 0 1px rgba(255,255,255,.82);
-    backdrop-filter: blur(18px) saturate(128%);
-    -webkit-backdrop-filter: blur(18px) saturate(128%);
+    border: 1px solid rgba(255,255,255,.9);
+    box-shadow: 0 12px 25px rgba(74, 93, 113, .09), inset 0 1px rgba(255,255,255,.98), inset 0 -1px rgba(255,255,255,.26);
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
     transition: transform .18s ease, box-shadow .18s ease;
   }
   .student-portal .lesson-card:hover { transform: translateY(-2px); box-shadow: 0 14px 26px rgba(74,93,113,.1), inset 0 1px rgba(255,255,255,.88); }
-  .student-portal .lesson-maths { background: linear-gradient(145deg, rgba(255,246,202,.82), rgba(250,231,176,.64)); }
-  .student-portal .lesson-english { background: linear-gradient(145deg, rgba(233,243,255,.86), rgba(214,229,248,.68)); }
-  .student-portal .lesson-science { background: linear-gradient(145deg, rgba(255,237,227,.86), rgba(248,218,207,.68)); }
+  .student-portal .lesson-maths { background: linear-gradient(145deg, rgba(255,246,202,.66), rgba(250,231,176,.44)); }
+  .student-portal .lesson-english { background: linear-gradient(145deg, rgba(233,243,255,.7), rgba(214,229,248,.48)); }
+  .student-portal .lesson-science { background: linear-gradient(145deg, rgba(255,237,227,.7), rgba(248,218,207,.48)); }
   .student-portal .lesson-icon { border: 1px solid rgba(255,255,255,.88); background: rgba(255,255,255,.6); box-shadow: inset 0 1px rgba(255,255,255,.9); color: #577581; }
   .student-portal .up-next { border: 1px solid rgba(255,255,255,.82); background: rgba(255,255,255,.58); color: #89784a; }
   .student-portal .lunch-note { color: #81909a; }
@@ -160,17 +160,17 @@ const studentGlassStyles = `
   .student-portal .help-card,
   .student-portal .timetable-card {
     border: 1px solid rgba(255,255,255,.94);
-    background: rgba(255,255,255,.65);
-    box-shadow: 0 12px 28px rgba(70, 90, 111, .065), inset 0 1px 0 rgba(255,255,255,.92);
-    backdrop-filter: blur(22px) saturate(138%);
-    -webkit-backdrop-filter: blur(22px) saturate(138%);
+    background: linear-gradient(135deg, rgba(255,255,255,.72), rgba(255,255,255,.38));
+    box-shadow: 0 14px 32px rgba(70, 90, 111, .09), inset 0 1px 0 rgba(255,255,255,.98), inset 0 -1px rgba(255,255,255,.24);
+    backdrop-filter: blur(28px) saturate(150%);
+    -webkit-backdrop-filter: blur(28px) saturate(150%);
   }
   .student-portal .featured-task {
     border: 1px solid rgba(255,255,255,.86);
-    background: linear-gradient(115deg, rgba(223,241,226,.8), rgba(222,238,234,.62));
-    box-shadow: inset 0 1px rgba(255,255,255,.88);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: linear-gradient(115deg, rgba(223,241,226,.68), rgba(222,238,234,.44));
+    box-shadow: inset 0 1px rgba(255,255,255,.98), inset 0 -1px rgba(255,255,255,.28), 0 5px 14px rgba(78,112,95,.06);
+    backdrop-filter: blur(22px) saturate(145%);
+    -webkit-backdrop-filter: blur(22px) saturate(145%);
   }
   .student-portal .task-stamp { border: 1px solid rgba(255,255,255,.85); background: rgba(255,246,206,.82); color: #7e794b; }
   .student-portal .start-button { background: linear-gradient(135deg, #4b806f, #587e9b) !important; box-shadow: 0 5px 13px rgba(58,105,109,.2); }
@@ -188,10 +188,10 @@ const studentGlassStyles = `
   .student-portal .tiny-note { color: #598477; }
   .student-portal .badge-card {
     border: 1px solid rgba(255,255,255,.88);
-    background: linear-gradient(125deg, rgba(255,246,208,.88), rgba(255,231,219,.7));
-    box-shadow: 0 10px 22px rgba(111,94,61,.07), inset 0 1px rgba(255,255,255,.9);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    background: linear-gradient(125deg, rgba(255,246,208,.7), rgba(255,231,219,.48));
+    box-shadow: 0 12px 26px rgba(111,94,61,.09), inset 0 1px rgba(255,255,255,.96), inset 0 -1px rgba(255,255,255,.3);
+    backdrop-filter: blur(24px) saturate(145%);
+    -webkit-backdrop-filter: blur(24px) saturate(145%);
   }
   .student-portal .help-card > p { color: #778792; }
   .student-portal .ask-button { border-color: rgba(255,255,255,.94) !important; background: rgba(255,255,255,.6) !important; box-shadow: inset 0 1px rgba(255,255,255,.86); color: #557b78 !important; }
