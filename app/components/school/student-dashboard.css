@@ -1186,3 +1186,207 @@
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Screenshot-inspired student day header */
+.student-dashboard .sd-day {
+  display: grid;
+  gap: 14px;
+}
+.student-dashboard .sd-day-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.student-dashboard .sd-day-heading h1 {
+  margin: 0;
+  color: var(--sd-ink);
+  font-size: 22px;
+  font-weight: 760;
+  letter-spacing: -0.6px;
+}
+.student-dashboard .sd-day-heading p {
+  margin-top: 3px;
+  color: var(--sd-muted);
+  font-size: 11px;
+}
+.student-dashboard .sd-welcome {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(180px, 0.9fr);
+  min-height: 138px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  border-radius: 19px;
+  background: var(--student-banner, #dfeedd);
+  padding: 0;
+  box-shadow: none;
+}
+.student-dashboard .sd-welcome-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 26px;
+}
+.student-dashboard .sd-welcome h2 {
+  margin: 0;
+  color: #274638;
+  font-size: clamp(25px, 2.5vw, 34px);
+  line-height: 1.15;
+  font-weight: 780;
+  letter-spacing: -1px;
+}
+.student-dashboard .sd-welcome-copy > p {
+  margin-top: 7px;
+  color: #4f665b;
+  font-size: 14px;
+}
+.student-dashboard .sd-welcome-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+}
+.student-dashboard .sd-welcome-pills > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  min-height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.77);
+  padding: 4px 10px;
+  color: #3f5a4d;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(64, 89, 75, 0.035);
+}
+.student-dashboard .sd-banner-art {
+  position: relative;
+  min-height: 138px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 65% 40%, rgba(255,255,255,.42), transparent 28%),
+    var(--student-banner-art, #d4e3d3);
+}
+.student-dashboard .sd-banner-art::before {
+  content: "";
+  position: absolute;
+  right: 20px;
+  bottom: -35px;
+  width: 155px;
+  height: 82px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 28% 35%, #8fac7f 0 6px, transparent 7px),
+    radial-gradient(circle at 48% 25%, #6f9772 0 7px, transparent 8px),
+    radial-gradient(circle at 68% 42%, #9db583 0 7px, transparent 8px),
+    linear-gradient(180deg, #b7c69b, #91a77c);
+  transform: rotate(-4deg);
+  opacity: 0.95;
+}
+.student-dashboard .sd-banner-sun {
+  position: absolute;
+  top: 20px;
+  right: 42%;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: #f2c65d;
+  box-shadow:
+    0 -13px 0 -7px #f2c65d,
+    0 13px 0 -7px #f2c65d,
+    13px 0 0 -7px #f2c65d,
+    -13px 0 0 -7px #f2c65d;
+}
+.student-dashboard .sd-banner-leaf {
+  position: absolute;
+  right: 56px;
+  bottom: 20px;
+  width: 68px;
+  height: 68px;
+  color: var(--student-accent, #287454);
+  stroke-width: 1.15;
+  transform: rotate(-10deg);
+}
+.student-dashboard .sd-banner-pencil {
+  position: absolute;
+  right: 86px;
+  bottom: 34px;
+  width: 60px;
+  height: 60px;
+  color: #9d6a46;
+  stroke-width: 1.3;
+  transform: rotate(18deg);
+}
+.student-dashboard .sd-read-button {
+  min-height: 38px;
+  border-color: rgba(78, 108, 91, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--student-accent, var(--sd-green));
+}
+.student-dashboard .sd-speech-note {
+  margin-top: -2px;
+}
+.school-student.student-theme-sky .student-dashboard {
+  --sd-green: #326d8f;
+  --sd-blue: #466f98;
+  --sd-mint: rgba(221, 237, 247, 0.78);
+  --sd-sky: rgba(219, 232, 250, 0.82);
+}
+.school-student.student-theme-sunshine .student-dashboard {
+  --sd-green: #8a6b29;
+  --sd-blue: #7a6a45;
+  --sd-mint: rgba(244, 236, 195, 0.8);
+  --sd-sky: rgba(246, 227, 206, 0.72);
+}
+
+@media (max-width: 720px) {
+  .student-dashboard .sd-welcome {
+    grid-template-columns: minmax(0, 1fr) 130px;
+    min-height: 132px;
+  }
+  .student-dashboard .sd-welcome-copy {
+    padding: 20px;
+  }
+  .student-dashboard .sd-welcome h2 {
+    font-size: 27px;
+  }
+  .student-dashboard .sd-banner-art {
+    min-height: 132px;
+  }
+  .student-dashboard .sd-banner-leaf {
+    right: 22px;
+  }
+  .student-dashboard .sd-banner-pencil {
+    right: 46px;
+  }
+}
+
+@media (max-width: 520px) {
+  .student-dashboard .sd-day-heading {
+    align-items: flex-start;
+  }
+  .student-dashboard .sd-day-heading h1 {
+    font-size: 20px;
+  }
+  .student-dashboard .sd-welcome {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .student-dashboard .sd-banner-art {
+    display: none;
+  }
+  .student-dashboard .sd-welcome-copy {
+    padding: 21px 19px;
+  }
+  .student-dashboard .sd-welcome h2 {
+    font-size: 26px;
+  }
+  .student-dashboard .sd-welcome-pills {
+    margin-top: 13px;
+  }
+}

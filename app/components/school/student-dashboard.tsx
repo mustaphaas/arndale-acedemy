@@ -259,42 +259,56 @@ export function StudentDashboard() {
   return (
     <div className="student-dashboard sd-root">
       <section
-        className="sd-welcome"
+        className="sd-day"
         id="overview"
         aria-labelledby="sd-welcome-title"
       >
-        <div className="sd-welcome-copy">
-          <h1 id="sd-welcome-title">
-            Ready to grow, {SAMPLE_LEARNER.firstName}?
-          </h1>
-          <p>
-            A little curiosity. A little practice. A whole lot of possibility.
-          </p>
+        <div className="sd-day-heading">
+          <div>
+            <h1>My day</h1>
+            <p>{SAMPLE_LEARNER.className}</p>
+          </div>
+          {speechAvailable !== false && (
+            <Button
+              type="button"
+              variant="outline"
+              className="sd-read-button"
+              disabled={speechAvailable === null}
+              onClick={() => readAloud(spokenSummary, "summary")}
+              aria-pressed={speaking === "summary"}
+            >
+              {speaking === "summary" ? (
+                <IconVolumeOff aria-hidden="true" />
+              ) : (
+                <IconVolume aria-hidden="true" />
+              )}
+              {speaking === "summary" ? "Stop reading" : "Read to me"}
+            </Button>
+          )}
         </div>
-        {speechAvailable !== false && (
-          <Button
-            type="button"
-            variant="outline"
-            className="sd-read-button"
-            disabled={speechAvailable === null}
-            onClick={() => readAloud(spokenSummary, "summary")}
-            aria-pressed={speaking === "summary"}
-          >
-            {speaking === "summary" ? (
-              <IconVolumeOff aria-hidden="true" />
-            ) : (
-              <IconVolume aria-hidden="true" />
-            )}
-            {speaking === "summary" ? "Stop reading" : "Read to me"}
-          </Button>
-        )}
-        <div className="sd-sample-note">
-          <IconInfoCircle size={17} aria-hidden="true" />
-          <p>
-            <strong>Example pupil & timetable:</strong> {SAMPLE_LEARNER.name},{" "}
-            {SAMPLE_LEARNER.className}. Homework comes from the shared classroom
-            list.
-          </p>
+
+        <div className="sd-welcome">
+          <div className="sd-welcome-copy">
+            <h2 id="sd-welcome-title">
+              Good morning, {SAMPLE_LEARNER.firstName}!
+            </h2>
+            <p>A new day, a new little adventure. Let’s grow!</p>
+            <div className="sd-welcome-pills" aria-label="Today at a glance">
+              <span>
+                <IconBook size={15} aria-hidden="true" />
+                {SAMPLE_LESSONS.length} lessons today
+              </span>
+              <span>
+                <IconPencil size={15} aria-hidden="true" />
+                {ready ? summary.pending : "—"} tasks to try
+              </span>
+            </div>
+          </div>
+          <div className="sd-banner-art" aria-hidden="true">
+            <span className="sd-banner-sun" />
+            <IconLeaf className="sd-banner-leaf" />
+            <IconPencil className="sd-banner-pencil" />
+          </div>
         </div>
         {(speechError && !selectedTask) || speechAvailable === false ? (
           <p className="sd-speech-note" role="status">
