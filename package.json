@@ -9,7 +9,7 @@
     "build:local": "vite build --config vite.local.config.ts",
     "preview:local": "vite preview --config vite.local.config.ts",
     "typecheck:local": "tsc -p tsconfig.local.json",
-    "test:local": "vitest run local",
+    "test:local": "vitest run local app/lib/learning-intelligence.spec.ts",
     "migrate:production": "tsx scripts/migrate-production.ts && pnpm db:migrate",
     "dev": "agent-native dev",
     "build": "agent-native build",

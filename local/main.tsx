@@ -17,6 +17,7 @@ import { AppToolkitProvider } from "@/components/ui/toolkit-provider";
 
 import { browserAssignments, useAssignmentSnapshot } from "./assignment-hooks";
 import { STORAGE_KEY } from "./assignment-store";
+import { LEARNING_STORAGE_KEY, refreshLearningStateFromStorage } from "@/lib/learning-intelligence";
 import { DemoHome } from "./demo-home";
 
 import "../app/global.css";
@@ -27,8 +28,13 @@ function LocalDemoSync() {
     const refreshFromTab = (event: StorageEvent) => {
       if (event.key === STORAGE_KEY || event.key === null)
         browserAssignments.refresh();
+      if (event.key === LEARNING_STORAGE_KEY || event.key === null)
+        refreshLearningStateFromStorage();
     };
-    const refreshOnFocus = () => browserAssignments.refresh();
+    const refreshOnFocus = () => {
+      browserAssignments.refresh();
+      refreshLearningStateFromStorage();
+    };
     window.addEventListener("storage", refreshFromTab);
     window.addEventListener("focus", refreshOnFocus);
     return () => {

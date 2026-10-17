@@ -17,6 +17,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { SAMPLE_LEARNER, type Assignment } from "@/lib/school";
+import { StudentLearningHub } from "@/components/school/learning-features";
 
 import {
   filterHomework,
@@ -724,6 +725,8 @@ export function StudentDashboard() {
           </section>
         </aside>
       </div>
+
+      <StudentLearningHub assignments={assignments} />
 
       <Dialog
         open={selectedTask !== null}

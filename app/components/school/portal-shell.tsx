@@ -43,13 +43,22 @@ const studentNavigation: Array<{ label: string; section: string; iosIcon: IOSIco
   { label: "My day", section: "overview", iosIcon: "home" },
   { label: "My lessons", section: "lessons", iosIcon: "book" },
   { label: "My homework", section: "homework", iosIcon: "checklist" },
-  { label: "My progress", section: "progress", iosIcon: "sprout" },
+  { label: "AI companion", section: "ai-companion", iosIcon: "sparkles" },
+  { label: "Learning path", section: "learning-path", iosIcon: "sprout" },
+  { label: "Reading coach", section: "reading-coach", iosIcon: "volume" },
+  { label: "Mastery map", section: "mastery", iosIcon: "trophy" },
+  { label: "Rewards", section: "rewards", iosIcon: "sparkles" },
+  { label: "Homework help", section: "homework-help", iosIcon: "help" },
+  { label: "My portfolio", section: "portfolio", iosIcon: "clipboard" },
   { label: "My timetable", section: "timetable", iosIcon: "calendar" },
   { label: "A helping hand", section: "help", iosIcon: "support" },
 ];
 
 const parentNavigation = [
   { label: "Family overview", section: "overview", icon: IconHome2 },
+  { label: "Parent intelligence", section: "intelligence", icon: IconSeedling },
+  { label: "Early alerts", section: "alerts", icon: IconCalendarWeek },
+  { label: "Messages", section: "communication", icon: IconHeartHandshake },
   { label: "Homework", section: "homework", icon: IconClipboardCheck },
   { label: "Learning progress", section: "progress", icon: IconSeedling },
   {
@@ -63,6 +72,9 @@ const parentNavigation = [
 
 const teacherNavigation = [
   { label: "Class overview", section: "overview", icon: IconHome2 },
+  { label: "AI assistant", section: "teacher-ai", icon: IconSeedling },
+  { label: "Early warnings", section: "early-warning", icon: IconCalendarWeek },
+  { label: "Family messages", section: "teacher-communication", icon: IconHeartHandshake },
   { label: "Assignments", section: "homework", icon: IconClipboardCheck },
   { label: "My class", section: "people", icon: IconUsers },
 ];

@@ -30,6 +30,7 @@ import {
 } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { type Assignment, SAMPLE_LEARNER, SCHOOL_NAME } from "@/lib/school";
+import { ParentIntelligenceHub } from "@/components/school/learning-features";
 
 import { summarizeParentHomework } from "./parent-summary";
 
@@ -529,6 +530,8 @@ export function ParentDashboard() {
           </section>
         </aside>
       </div>
+
+      <ParentIntelligenceHub assignments={assignments} />
 
       <Dialog
         open={dialog !== null}
