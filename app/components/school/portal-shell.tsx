@@ -35,7 +35,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { viewForPath } from "@/lib/portal-navigation";
-import { isLocalDemo, signOut } from "@/lib/portal-session";
+import { signOut } from "@/lib/portal-session";
 import { SAMPLE_LEARNER, SCHOOL_NAME, type PortalRole } from "@/lib/school";
 
 import "@/styles/school-portal.css";
