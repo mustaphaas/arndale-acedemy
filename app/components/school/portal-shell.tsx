@@ -14,6 +14,7 @@ import {
   IconSchool,
   IconSeedling,
   IconUsers,
+  IconVolume,
 } from "@tabler/icons-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router";
@@ -100,17 +101,17 @@ export function PortalShell({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
   const [signOutError, setSignOutError] = useState("");
-  const [studentTheme, setStudentTheme] = useState<"garden" | "sky" | "sunshine">("garden");
+  const [studentTheme, setStudentTheme] = useState<"garden" | "sky" | "sunshine" | "midnight">("garden");
 
   useEffect(() => {
     if (role !== "student") return;
     const saved = window.localStorage.getItem("arndale-academy.student-theme");
-    if (saved === "garden" || saved === "sky" || saved === "sunshine") {
+    if (saved === "garden" || saved === "sky" || saved === "sunshine" || saved === "midnight") {
       setStudentTheme(saved);
     }
   }, [role]);
 
-  function chooseStudentTheme(theme: "garden" | "sky" | "sunshine") {
+  function chooseStudentTheme(theme: "garden" | "sky" | "sunshine" | "midnight") {
     setStudentTheme(theme);
     try {
       window.localStorage.setItem("arndale-academy.student-theme", theme);
@@ -249,32 +250,19 @@ export function PortalShell({ children }: { children: ReactNode }) {
             </div>
           </div>
           <div className="school-topbar-right">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="school-view-switch">
-                  Switch view <IconChevronDown size={16} />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>Classroom preview</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/student">
-                    <IconBook2 size={16} /> Student dashboard
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/parent">
-                    <IconUsers size={16} /> Parent dashboard
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/teacher">
-                    <IconSchool size={16} /> Teacher dashboard
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {role === "student" && (
+              <Button
+                type="button"
+                variant="ghost"
+                className="school-read-aloud-button"
+                onClick={() =>
+                  window.dispatchEvent(new CustomEvent("arndale:read-to-me"))
+                }
+              >
+                <IconVolume size={17} stroke={1.7} />
+                Read to me
+              </Button>
+            )}
             <span className="school-header-separator" />
             {role === "student" ? (
               <DropdownMenu>
@@ -303,6 +291,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
                     ["garden", "Garden"],
                     ["sky", "Sky"],
                     ["sunshine", "Sunshine"],
+                    ["midnight", "Midnight"],
                   ] as const).map(([value, label]) => (
                     <DropdownMenuItem
                       key={value}
