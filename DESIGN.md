@@ -39,12 +39,12 @@ re-derive a new direction. The first UI pass must fill these fields in as
 part of that build, not leave them as an empty template.
 
 - Product mode: `operate`
-- Audience and cadence:
+- Audience and cadence: Primary-school pupils and their parents, checking learning and homework each school day.
 - Visual world (name + the feeling it creates): Littleleaf Garden — a gentle, encouraging primary-school daybook with storybook warmth.
-- Palette family + neutral undertone:
-- Type treatment:
-- Composition:
-- Shape language:
+- Palette family + neutral undertone: Retain the existing soft pink, blue, and mint gradient background; translucent white panels, muted green actions, and slate-blue text.
+- Type treatment: Friendly, readable sans serif; strong hierarchy; at least 14px primary body text and clear touch controls.
+- Composition: Shared left navigation, compact contextual header, a clear primary action, and distinct student/parent content. Login pairs a welcoming school introduction with an accessible authentication card.
+- Shape language: Soft corners, quiet borders, restrained shadows, and leaf/book school motifs.
 - Anti-references (defaults this app must not drift toward): Cold enterprise dashboards, dense tables, stark gray SaaS chrome, or overly formal school administration software.
 
 ## Agent-Native is structural, not visual

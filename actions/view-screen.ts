@@ -13,7 +13,7 @@ import { z } from "zod";
 
 export default defineAction({
   description:
-    "See what the user is currently looking at on screen. Returns the current navigation state for the app canvas plus agent rail. Always call this first before taking any action.",
+    "See the current school portal and path. Returns navigation state identifying student, parent, or teacher. Call this before acting on the current screen.",
   schema: z.object({}),
   http: false,
   readOnly: true,

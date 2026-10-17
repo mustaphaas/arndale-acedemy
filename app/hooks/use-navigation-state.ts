@@ -1,6 +1,7 @@
 import { appBasePath, appPath } from "@agent-native/core/client/api-path";
 import { useAgentRouteState } from "@agent-native/core/client/navigation";
 
+import { pathForCommand, viewForPath } from "@/lib/portal-navigation";
 import { TAB_ID } from "@/lib/tab-id";
 
 export interface NavigationState {
@@ -16,23 +17,8 @@ export function useNavigationState() {
       view: viewForPath(pathname),
       path: appPath(pathname),
     }),
-    getCommandPath: (command) =>
-      routerPath(command.path || pathForView(command.view)),
+    getCommandPath: (command) => routerPath(pathForCommand(command)),
   });
-}
-
-function viewForPath(pathname: string): string {
-  if (pathname === "/") return "home";
-  return "home";
-}
-
-function pathForView(view?: string): string {
-  switch (view) {
-    case "home":
-      return "/";
-    default:
-      return "/";
-  }
 }
 
 function routerPath(path: string): string {

@@ -1,0 +1,1188 @@
+.student-dashboard {
+  --sd-ink: #293b4b;
+  --sd-muted: #5b6d7c;
+  --sd-green: #326a57;
+  --sd-blue: #3f6482;
+  --sd-error: #994339;
+  --sd-surface: rgba(255, 255, 255, 0.64);
+  --sd-line: rgba(84, 109, 125, 0.15);
+  --sd-glass-line: rgba(255, 255, 255, 0.9);
+  --sd-yellow: rgba(250, 237, 191, 0.66);
+  --sd-pink: rgba(247, 222, 219, 0.63);
+  --sd-mint: rgba(219, 237, 225, 0.74);
+  --sd-sky: rgba(219, 233, 251, 0.7);
+  --sd-shadow: 0 8px 24px rgba(60, 82, 106, 0.055);
+  color: var(--sd-ink);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.student-dashboard.sd-root {
+  display: grid;
+  gap: 22px;
+  width: 100%;
+  min-width: 0;
+}
+
+.student-dashboard section[id] {
+  scroll-margin-top: 92px;
+}
+
+.student-dashboard :is(h1, h2, h3, h4, p, dl, dd) {
+  margin: 0;
+}
+
+.student-dashboard :is(button, a, summary):focus-visible {
+  outline: 2px solid var(--sd-blue);
+  outline-offset: 4px;
+}
+
+.student-dashboard .sd-welcome {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px 24px;
+  align-items: center;
+  border: 1px solid var(--sd-glass-line);
+  border-radius: 22px;
+  background: linear-gradient(
+    112deg,
+    var(--sd-surface),
+    rgba(229, 241, 236, 0.52) 60%,
+    rgba(226, 235, 247, 0.48)
+  );
+  padding: 26px 28px 18px;
+  box-shadow: var(--sd-shadow);
+}
+
+.student-dashboard .sd-welcome h1 {
+  font-size: clamp(25px, 2.7vw, 34px);
+  line-height: 1.2;
+  font-weight: 720;
+  letter-spacing: -1.1px;
+  text-wrap: balance;
+}
+
+.student-dashboard .sd-welcome-copy > p {
+  margin-top: 9px;
+  color: var(--sd-muted);
+  font-size: 15px;
+}
+
+.student-dashboard .sd-read-button {
+  min-height: 42px;
+  background: var(--sd-surface);
+}
+
+.student-dashboard .sd-sample-note {
+  display: flex;
+  grid-column: 1 / -1;
+  gap: 8px;
+  align-items: flex-start;
+  border-top: 1px solid var(--sd-line);
+  padding-top: 12px;
+  color: var(--sd-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.student-dashboard .sd-sample-note > svg {
+  flex: 0 0 17px;
+  margin-top: 1px;
+}
+
+.student-dashboard .sd-sample-note strong {
+  font-weight: 650;
+}
+
+.student-dashboard .sd-speech-note {
+  grid-column: 1 / -1;
+  color: var(--sd-muted);
+  font-size: 13px;
+}
+
+.student-dashboard .sd-quick-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.student-dashboard .sd-stat {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid var(--sd-glass-line);
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.43);
+  padding: 16px 20px;
+}
+
+.student-dashboard .sd-stat-icon {
+  display: grid;
+  width: 43px;
+  height: 43px;
+  flex: 0 0 43px;
+  place-items: center;
+  border: 1px solid var(--sd-glass-line);
+  border-radius: 13px;
+  color: var(--sd-blue);
+}
+
+.student-dashboard .sd-stat-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.7;
+}
+
+.student-dashboard .sd-stat > div {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px 12px;
+}
+
+.student-dashboard .sd-stat > div > span {
+  color: var(--sd-muted);
+  font-size: 13px;
+}
+
+.student-dashboard .sd-stat strong {
+  font-size: 26px;
+  font-weight: 670;
+  letter-spacing: -0.8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.student-dashboard .sd-tone-blue {
+  background: var(--sd-sky);
+}
+.student-dashboard .sd-tone-yellow {
+  background: var(--sd-yellow);
+}
+.student-dashboard .sd-tone-mint {
+  background: var(--sd-mint);
+}
+.student-dashboard .sd-tone-pink {
+  background: var(--sd-pink);
+}
+
+.student-dashboard .sd-content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(270px, 0.46fr);
+  align-items: start;
+  gap: 22px;
+}
+
+.student-dashboard :is(.sd-main-column, .sd-side-column) {
+  display: grid;
+  min-width: 0;
+  gap: 22px;
+}
+
+.student-dashboard .sd-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin-bottom: 16px;
+}
+
+.student-dashboard .sd-section-heading h2 {
+  font-size: 19px;
+  line-height: 1.3;
+  font-weight: 670;
+  letter-spacing: -0.5px;
+}
+
+.student-dashboard .sd-section-heading > svg {
+  flex-shrink: 0;
+  color: var(--sd-green);
+  stroke-width: 1.7;
+}
+
+.student-dashboard .sd-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--sd-green);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.student-dashboard .sd-text-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.student-dashboard .sd-lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.student-dashboard .sd-lesson-card {
+  display: flex;
+  height: auto;
+  min-height: 190px;
+  min-width: 0;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0;
+  border: 1px solid var(--sd-glass-line);
+  border-radius: 18px;
+  padding: 17px;
+  box-shadow: var(--sd-shadow);
+  color: var(--sd-ink);
+  text-align: left;
+  white-space: normal;
+}
+
+.student-dashboard .sd-lesson-card:hover {
+  background: var(--sd-surface);
+}
+
+.student-dashboard .sd-lesson-card.sd-is-selected {
+  border-color: rgba(63, 100, 130, 0.54);
+  box-shadow:
+    inset 0 0 0 1px rgba(63, 100, 130, 0.25),
+    var(--sd-shadow);
+}
+
+.student-dashboard .sd-lesson-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.student-dashboard .sd-lesson-icon {
+  display: grid;
+  width: 41px;
+  height: 41px;
+  place-items: center;
+  border: 1px solid var(--sd-glass-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.54);
+  color: var(--sd-blue);
+}
+
+.student-dashboard .sd-lesson-icon > svg {
+  width: 23px;
+  height: 23px;
+  stroke-width: 1.65;
+}
+
+.student-dashboard .sd-lesson-arrow {
+  color: var(--sd-blue);
+  opacity: 0.5;
+}
+
+.student-dashboard .sd-is-selected .sd-lesson-arrow {
+  opacity: 1;
+}
+
+.student-dashboard .sd-lesson-subject {
+  font-size: 17px;
+  line-height: 1.4;
+  font-weight: 670;
+  letter-spacing: -0.35px;
+}
+
+.student-dashboard .sd-lesson-topic {
+  margin-top: 3px;
+  color: var(--sd-muted);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.student-dashboard .sd-lesson-time {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: auto;
+  padding-top: 14px;
+  color: var(--sd-muted);
+  font-size: 12px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.student-dashboard .sd-lesson-detail {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 12px;
+  border: 1px solid var(--sd-glass-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.42);
+  padding: 15px 17px;
+}
+
+.student-dashboard .sd-lesson-detail > svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--sd-blue);
+}
+
+.student-dashboard .sd-lesson-detail h3 {
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.student-dashboard .sd-lesson-detail p {
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.student-dashboard .sd-lesson-detail span {
+  display: block;
+  margin-top: 7px;
+  color: var(--sd-muted);
+  font-size: 12px;
+}
+
+.student-dashboard .sd-lesson-detail strong {
+  font-weight: 600;
+}
+
+.student-dashboard .sd-panel {
+  min-width: 0;
+  border: 1px solid var(--sd-glass-line);
+  border-radius: 20px;
+  background: var(--sd-surface);
+  padding: 21px;
+  box-shadow: var(--sd-shadow);
+}
+
+.student-dashboard .sd-count-pill {
+  flex-shrink: 0;
+  border: 1px solid var(--sd-glass-line);
+  border-radius: 99px;
+  background: var(--sd-mint);
+  padding: 4px 11px;
+  color: var(--sd-green);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.student-dashboard .sd-next-task {
+  border: 1px solid rgba(110, 143, 128, 0.16);
+  border-radius: 16px;
+  background: linear-gradient(
+    120deg,
+    rgba(222, 237, 226, 0.74),
+    rgba(227, 239, 244, 0.56)
+  );
+  padding: 17px;
+}
+
+.student-dashboard .sd-next-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px;
+  color: var(--sd-green);
+  font-size: 12px;
+}
+
+.student-dashboard .sd-next-top > span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 650;
+}
+
+.student-dashboard .sd-next-top > span:last-child {
+  color: var(--sd-muted);
+}
+
+.student-dashboard .sd-next-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-top: 16px;
+}
+
+.student-dashboard .sd-task-stamp {
+  display: grid;
+  width: 49px;
+  height: 52px;
+  flex: 0 0 49px;
+  place-items: center;
+  border: 1px solid var(--sd-glass-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--sd-green);
+}
+
+.student-dashboard .sd-next-copy {
+  min-width: 0;
+}
+
+.student-dashboard .sd-next-copy > span {
+  color: var(--sd-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.student-dashboard .sd-next-copy h3 {
+  margin-top: 2px;
+  font-size: 19px;
+  line-height: 1.4;
+  font-weight: 660;
+  letter-spacing: -0.35px;
+  overflow-wrap: anywhere;
+}
+
+.student-dashboard .sd-next-copy p {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: 6px;
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow-wrap: anywhere;
+}
+
+.student-dashboard .sd-open-next {
+  display: flex;
+  width: fit-content;
+  min-height: 42px;
+  margin-top: 17px;
+  margin-left: 62px;
+  gap: 16px;
+}
+
+.student-dashboard .sd-homework-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+  margin-bottom: 9px;
+}
+
+.student-dashboard .sd-homework-toolbar > h3 {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.student-dashboard .sd-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  border: 1px solid var(--sd-line);
+  border-radius: 11px;
+  background: rgba(237, 242, 244, 0.58);
+  padding: 3px;
+}
+
+.student-dashboard .sd-filter {
+  height: 34px;
+  gap: 6px;
+  border-radius: 8px;
+  padding-right: 10px;
+  padding-left: 10px;
+  color: var(--sd-muted);
+  font-size: 12px;
+}
+
+.student-dashboard .sd-filter > span {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+}
+
+.student-dashboard .sd-filter.sd-is-active {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 4px rgba(44, 65, 80, 0.08);
+  color: var(--sd-green);
+}
+
+.student-dashboard .sd-assignment-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.student-dashboard .sd-assignment {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border-top: 1px solid var(--sd-line);
+  padding: 16px 0;
+}
+
+.student-dashboard .sd-assignment:first-child {
+  border-top: 0;
+}
+.student-dashboard .sd-assignment:last-child {
+  padding-bottom: 0;
+}
+
+.student-dashboard .sd-assignment-icon {
+  display: grid;
+  width: 37px;
+  height: 39px;
+  flex: 0 0 37px;
+  place-items: center;
+  border-radius: 11px;
+  background: var(--sd-sky);
+  color: var(--sd-blue);
+}
+
+.student-dashboard .sd-assignment-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.student-dashboard .sd-assignment-copy h4 {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.student-dashboard .sd-assignment-copy p {
+  margin-top: 3px;
+  color: var(--sd-muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.student-dashboard .sd-task-link {
+  height: 36px;
+  flex-shrink: 0;
+  padding-right: 6px;
+  padding-left: 6px;
+  color: var(--sd-green);
+  font-size: 12px;
+}
+
+.student-dashboard .sd-complete-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--sd-green);
+  font-size: 12px;
+}
+
+.student-dashboard .sd-is-complete .sd-assignment-icon {
+  background: var(--sd-mint);
+  color: var(--sd-green);
+}
+
+.student-dashboard .sd-all-done {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border-radius: 15px;
+  background: var(--sd-mint);
+  padding: 19px 17px;
+}
+
+.student-dashboard .sd-all-done > span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--sd-surface);
+  color: var(--sd-green);
+}
+
+.student-dashboard .sd-all-done h3 {
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.student-dashboard .sd-all-done p {
+  margin-top: 5px;
+  color: var(--sd-muted);
+  font-size: 14px;
+}
+
+.student-dashboard .sd-data-state {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  border-radius: 15px;
+  background: rgba(239, 244, 245, 0.58);
+  padding: 34px 20px;
+  text-align: center;
+}
+
+.student-dashboard .sd-data-state > svg {
+  color: var(--sd-green);
+}
+
+.student-dashboard .sd-data-state h3 {
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.student-dashboard .sd-data-state p {
+  max-width: 330px;
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.student-dashboard .sd-data-state button {
+  margin-top: 4px;
+}
+
+.student-dashboard .sd-error-state {
+  background: rgba(250, 234, 228, 0.55);
+}
+.student-dashboard .sd-error-state > svg {
+  color: var(--sd-error);
+}
+
+.student-dashboard .sd-filter-empty {
+  border-top: 1px solid var(--sd-line);
+  padding: 20px 0 5px;
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.student-dashboard .sd-refresh-note {
+  margin-top: 14px;
+  color: var(--sd-muted);
+  font-size: 12px;
+}
+
+.student-dashboard .sd-progress-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding: 5px 0 19px;
+}
+
+.student-dashboard .sd-progress-ring {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  flex: 0 0 110px;
+}
+
+.student-dashboard .sd-progress-ring svg {
+  width: 100%;
+  height: 100%;
+}
+
+.student-dashboard :is(.sd-ring-track, .sd-ring-value) {
+  fill: none;
+  stroke-width: 8;
+}
+
+.student-dashboard .sd-ring-track {
+  stroke: rgba(84, 124, 105, 0.13);
+}
+.student-dashboard .sd-ring-value {
+  stroke: var(--sd-green);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 180ms ease;
+}
+
+.student-dashboard .sd-progress-ring > div {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-dashboard .sd-progress-ring strong {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 680;
+  letter-spacing: -0.8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.student-dashboard .sd-progress-ring span {
+  margin-top: 4px;
+  color: var(--sd-muted);
+  font-size: 12px;
+}
+
+.student-dashboard .sd-progress-copy {
+  flex: 1;
+  min-width: 85px;
+}
+.student-dashboard .sd-progress-copy > strong {
+  font-size: 14px;
+  font-weight: 650;
+}
+.student-dashboard .sd-progress-copy p {
+  margin-top: 5px;
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.student-dashboard .sd-milestone {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  border-top: 1px solid var(--sd-line);
+  padding-top: 17px;
+}
+
+.student-dashboard .sd-milestone > svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--sd-green);
+  stroke-width: 1.6;
+}
+
+.student-dashboard .sd-milestone h3 {
+  font-size: 14px;
+  font-weight: 650;
+}
+.student-dashboard .sd-milestone p {
+  margin-top: 5px;
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+.student-dashboard .sd-muted-state {
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.student-dashboard .sd-progress-empty {
+  padding: 12px 0 4px;
+}
+.student-dashboard .sd-progress-empty > svg {
+  margin-bottom: 12px;
+  color: var(--sd-green);
+}
+.student-dashboard .sd-progress-empty h3 {
+  font-size: 16px;
+  font-weight: 650;
+}
+.student-dashboard .sd-progress-empty p {
+  margin-top: 7px;
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.student-dashboard .sd-help {
+  background: rgba(248, 236, 229, 0.47);
+}
+.student-dashboard .sd-help > p {
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.student-dashboard .sd-help-details {
+  margin-top: 15px;
+  border-top: 1px solid var(--sd-line);
+}
+
+.student-dashboard .sd-help-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 14px;
+  color: var(--sd-green);
+  font-size: 13px;
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+}
+
+.student-dashboard .sd-help-details summary::-webkit-details-marker {
+  display: none;
+}
+.student-dashboard .sd-help-details[open] summary svg {
+  transform: rotate(180deg);
+}
+.student-dashboard .sd-help-details ol {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+.student-dashboard .sd-help-details li + li {
+  margin-top: 8px;
+}
+
+.student-dashboard .sd-timetable-label {
+  margin-top: -8px;
+  color: var(--sd-muted);
+  font-size: 12px;
+}
+.student-dashboard .sd-timetable dl {
+  margin-top: 15px;
+}
+.student-dashboard .sd-timetable dl > div {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  border-top: 1px solid var(--sd-line);
+  padding: 12px 0;
+}
+.student-dashboard .sd-timetable dt {
+  min-width: 41px;
+  color: var(--sd-blue);
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.student-dashboard .sd-timetable dd {
+  color: var(--sd-muted);
+  font-size: 14px;
+}
+.student-dashboard .sd-timetable > a {
+  margin-top: 10px;
+}
+
+.student-dashboard.sd-task-dialog {
+  max-width: 560px;
+  border-radius: 20px;
+  background: #f8faf9;
+  padding: 26px;
+}
+
+.student-dashboard .sd-dialog-title {
+  padding-right: 20px;
+  font-size: 23px;
+  line-height: 1.3;
+  font-weight: 670;
+  letter-spacing: -0.6px;
+  overflow-wrap: anywhere;
+}
+.student-dashboard .sd-dialog-meta {
+  margin-top: 8px;
+  color: var(--sd-muted);
+  font-size: 13px;
+}
+.student-dashboard .sd-task-instructions {
+  border: 1px solid var(--sd-line);
+  border-radius: 14px;
+  background: var(--sd-surface);
+  padding: 18px;
+}
+.student-dashboard .sd-task-instructions h3 {
+  margin-bottom: 9px;
+  font-size: 14px;
+  font-weight: 650;
+}
+.student-dashboard .sd-task-instructions p {
+  font-size: 15px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.student-dashboard .sd-dialog-read {
+  width: fit-content;
+  min-height: 40px;
+}
+.student-dashboard .sd-task-feedback {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  border-radius: 10px;
+  background: var(--sd-mint);
+  padding: 11px 13px;
+  color: var(--sd-green);
+  font-size: 14px;
+}
+.student-dashboard .sd-task-feedback > svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.student-dashboard .sd-feedback-error {
+  background: var(--sd-pink);
+  color: var(--sd-error);
+}
+.student-dashboard .sd-completion-hint {
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.student-dashboard .sd-dialog-footer {
+  margin-top: 3px;
+  gap: 8px;
+}
+.student-dashboard .sd-dialog-footer > button {
+  min-height: 42px;
+}
+.student-dashboard .sd-loading-icon {
+  animation: sd-spin 900ms linear infinite;
+}
+
+@keyframes sd-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1200px) {
+  .student-dashboard .sd-content-grid {
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 18px;
+  }
+  .student-dashboard :is(.sd-main-column, .sd-side-column) {
+    gap: 18px;
+  }
+  .student-dashboard .sd-stat {
+    padding: 14px;
+    gap: 10px;
+  }
+  .student-dashboard .sd-stat > div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .student-dashboard .sd-stat strong {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+  .student-dashboard .sd-lesson-card {
+    padding: 14px;
+  }
+  .student-dashboard .sd-panel {
+    padding: 19px;
+  }
+  .student-dashboard .sd-homework-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1060px) {
+  .student-dashboard .sd-content-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .student-dashboard .sd-side-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .student-dashboard .sd-timetable {
+    grid-column: 1 / -1;
+  }
+  .student-dashboard .sd-timetable dl {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .student-dashboard .sd-timetable dl > div {
+    gap: 12px;
+  }
+  .student-dashboard .sd-lesson-card {
+    min-height: 178px;
+    padding: 17px;
+  }
+  .student-dashboard .sd-homework-toolbar {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (max-width: 620px) {
+  .student-dashboard.sd-root {
+    gap: 18px;
+  }
+  .student-dashboard .sd-welcome {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    border-radius: 18px;
+    padding: 21px 19px 16px;
+  }
+  .student-dashboard .sd-welcome h1 {
+    font-size: 28px;
+    letter-spacing: -0.9px;
+  }
+  .student-dashboard .sd-read-button {
+    width: fit-content;
+  }
+  .student-dashboard .sd-quick-stats {
+    gap: 8px;
+  }
+  .student-dashboard .sd-stat {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+    border-radius: 14px;
+    padding: 13px 11px;
+  }
+  .student-dashboard .sd-stat-icon {
+    width: 35px;
+    height: 35px;
+    flex-basis: 35px;
+    border-radius: 10px;
+  }
+  .student-dashboard .sd-stat-icon svg {
+    width: 19px;
+    height: 19px;
+  }
+  .student-dashboard .sd-stat > div > span {
+    font-size: 12px;
+  }
+  .student-dashboard .sd-stat strong {
+    margin-top: 4px;
+  }
+  .student-dashboard .sd-side-column {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .student-dashboard .sd-section-heading {
+    flex-wrap: wrap;
+  }
+  .student-dashboard .sd-section-heading h2 {
+    font-size: 18px;
+  }
+  .student-dashboard .sd-lesson-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+  }
+  .student-dashboard .sd-lesson-card {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    column-gap: 13px;
+    min-height: 0;
+    border-radius: 14px;
+    padding: 15px;
+  }
+  .student-dashboard .sd-lesson-top {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    margin: 0;
+  }
+  .student-dashboard .sd-lesson-arrow {
+    display: none;
+  }
+  .student-dashboard .sd-lesson-subject {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 16px;
+  }
+  .student-dashboard .sd-lesson-topic {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .student-dashboard .sd-lesson-time {
+    grid-column: 3;
+    grid-row: 1 / 3;
+    margin: 0;
+    padding: 0;
+    align-self: center;
+    font-size: 12px;
+  }
+  .student-dashboard .sd-lesson-time svg {
+    display: none;
+  }
+  .student-dashboard .sd-lesson-detail {
+    padding: 14px;
+  }
+  .student-dashboard .sd-panel {
+    padding: 18px 16px;
+    border-radius: 17px;
+  }
+  .student-dashboard .sd-next-task {
+    padding: 15px;
+  }
+  .student-dashboard .sd-next-copy h3 {
+    font-size: 18px;
+  }
+  .student-dashboard .sd-open-next {
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 0;
+  }
+  .student-dashboard .sd-homework-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .student-dashboard .sd-assignment {
+    gap: 8px;
+  }
+  .student-dashboard .sd-complete-label > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .student-dashboard .sd-task-link {
+    gap: 3px;
+  }
+  .student-dashboard .sd-timetable dl {
+    display: block;
+  }
+  .student-dashboard .sd-timetable dl > div {
+    gap: 20px;
+  }
+  .student-dashboard.sd-task-dialog {
+    padding: 22px 18px;
+  }
+  .student-dashboard .sd-dialog-title {
+    font-size: 21px;
+  }
+  .student-dashboard .sd-dialog-footer {
+    flex-direction: column-reverse;
+  }
+  .student-dashboard .sd-dialog-footer > button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 370px) {
+  .student-dashboard .sd-lesson-card {
+    grid-template-columns: 38px minmax(0, 1fr);
+  }
+  .student-dashboard .sd-lesson-time {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 5px;
+  }
+  .student-dashboard .sd-lesson-top {
+    grid-row: 1 / 4;
+  }
+  .student-dashboard .sd-lesson-icon {
+    width: 38px;
+    height: 38px;
+  }
+  .student-dashboard .sd-task-stamp {
+    display: none;
+  }
+  .student-dashboard .sd-filter {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+  .student-dashboard .sd-assignment-icon {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .student-dashboard *,
+  .student-dashboard *::before,
+  .student-dashboard *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

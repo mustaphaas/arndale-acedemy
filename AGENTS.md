@@ -26,10 +26,36 @@ For custom branding, keep `server/plugins/agent-native-email-branding.ts` aligne
 
 ## Application state
 
-- `navigation` describes the view and selected ids. The default home view is
-  `home` at `/` (blank app canvas). No agent rail or chat is mounted by
-  default; add one only when the user asks.
+- `navigation` describes the current school portal and path: `student` at
+  `/` or `/student`, `parent` at `/parent`, and `teacher` at `/teacher`.
+  The legacy `home` navigation command still opens `/`. No agent rail or chat
+  is mounted; add one only when the user asks.
 - Use `navigate` when supported and `view-screen` for a fresh read of visible details; basic navigation is already in `<current-screen>`.
+
+## Primary school portal
+
+The shared portal shell is mounted once by `app/components/layout/Layout.tsx`.
+Student and parent content live under `app/components/school/`; the existing
+teacher assignment workflow remains in `app/components/portal.tsx`. Preserve
+the pastel background and the Arndale Academy school identity.
+
+The current `assignments` table is a shared classroom preview, not a per-pupil
+record system. Sample profile/timetable/notice content must remain labelled.
+Do not invent attendance, grades, message delivery, or role isolation. A
+selected dashboard is navigation only; real school deployment requires
+server-side membership, guardian links, and individual completion records.
+
+| Operation                        | Action                                        |
+| -------------------------------- | --------------------------------------------- |
+| Read the classroom task list     | `list-assignments`                            |
+| Add a class task                 | `create-assignment`                           |
+| Explicitly mark a task completed | `update-assignment` with `id` and `completed` |
+| Remove a class task              | `delete-assignment` with `id`                 |
+| Open a dashboard or section      | `navigate` with `view` or `path`              |
+
+The branded sign-in document in `server/lib/portal-login.ts` configures the
+existing auth plugin. Keep registration followed by login, preserve opaque
+sign-in continuations with the framework helper, and use framework `signOut()`.
 
 ## Building a domain app
 
