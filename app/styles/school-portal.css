@@ -886,3 +886,110 @@
     backdrop-filter: blur(16px);
   }
 }
+
+
+/* iOS icon treatment and Clear Glass theme */
+.school-student .ios-icon {
+  flex: 0 0 auto;
+  overflow: visible;
+}
+.school-student .school-nav-link .ios-icon {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  border: 1px solid rgba(255,255,255,.56);
+  border-radius: 9px;
+  background: rgba(255,255,255,.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.72),
+    0 3px 9px rgba(56, 70, 79, .04);
+  backdrop-filter: blur(12px) saturate(145%);
+  -webkit-backdrop-filter: blur(12px) saturate(145%);
+}
+.school-student .school-nav-link.is-active .ios-icon {
+  border-color: rgba(255,255,255,.72);
+  background: rgba(255,255,255,.42);
+  color: var(--school-green);
+}
+.school-student .school-sidebar-footer .school-nav-link .ios-icon {
+  width: 29px;
+  height: 29px;
+}
+.school-theme-swatch.is-glass {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.88), rgba(210,232,246,.34)),
+    linear-gradient(135deg, #dff3fb, #f9e8f1);
+}
+.school-student.student-theme-glass {
+  --school-ink: #233540;
+  --school-muted: #627784;
+  --school-green: #3e7567;
+  --school-focus: #3f7f70;
+  --student-banner: rgba(232, 245, 239, .46);
+  --student-banner-art: rgba(218, 237, 232, .30);
+  --student-accent: #3d7868;
+  --student-soft: rgba(255,255,255,.24);
+  background:
+    radial-gradient(circle at 10% 8%, rgba(255, 231, 168, .58), transparent 26%),
+    radial-gradient(circle at 17% 76%, rgba(151, 236, 235, .46), transparent 24%),
+    radial-gradient(circle at 47% 38%, rgba(246, 195, 219, .43), transparent 30%),
+    radial-gradient(circle at 84% 13%, rgba(190, 222, 255, .57), transparent 28%),
+    radial-gradient(circle at 74% 80%, rgba(217, 202, 255, .35), transparent 26%),
+    linear-gradient(135deg, #f7f9fb 0%, #eef3f6 48%, #f8f7fb 100%);
+}
+.school-student.student-theme-glass .school-sidebar {
+  border-color: rgba(255,255,255,.58);
+  background:
+    linear-gradient(155deg, rgba(255,255,255,.34), rgba(255,255,255,.14)),
+    radial-gradient(circle at 10% 4%, rgba(255,236,178,.22), transparent 34%),
+    radial-gradient(circle at 96% 72%, rgba(173,229,239,.19), transparent 36%);
+  box-shadow:
+    0 22px 55px rgba(54, 71, 83, .12),
+    inset 0 1px 0 rgba(255,255,255,.78),
+    inset 0 -1px 0 rgba(255,255,255,.18);
+  backdrop-filter: blur(42px) saturate(175%);
+  -webkit-backdrop-filter: blur(42px) saturate(175%);
+}
+.school-student.student-theme-glass .school-brand-mark,
+.school-student.student-theme-glass .school-account-button,
+.school-student.student-theme-glass .school-read-aloud-button,
+.school-student.student-theme-glass .school-nav-link .ios-icon {
+  border-color: rgba(255,255,255,.66);
+  background: rgba(255,255,255,.26);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.86),
+    0 6px 18px rgba(52, 72, 83, .05);
+  backdrop-filter: blur(22px) saturate(170%);
+  -webkit-backdrop-filter: blur(22px) saturate(170%);
+}
+.school-student.student-theme-glass .school-nav-link {
+  color: rgba(43, 59, 69, .86);
+}
+.school-student.student-theme-glass .school-nav-link:hover {
+  background: rgba(255,255,255,.24);
+}
+.school-student.student-theme-glass .school-nav-link.is-active {
+  border-color: rgba(255,255,255,.66);
+  color: #2e6658;
+  background:
+    linear-gradient(110deg, rgba(214,239,228,.38), rgba(220,233,248,.26));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.78),
+    0 8px 22px rgba(58, 84, 75, .05);
+  backdrop-filter: blur(26px) saturate(170%);
+}
+.school-student.student-theme-glass .school-sidebar-note {
+  border-color: rgba(255,255,255,.58);
+  background: rgba(255, 238, 183, .30);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.68);
+  backdrop-filter: blur(26px) saturate(160%);
+}
+.school-student.student-theme-midnight .school-nav-link .ios-icon {
+  border-color: rgba(255,255,255,.07);
+  background: rgba(255,255,255,.04);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+}
+.school-student.student-theme-midnight .school-nav-link.is-active .ios-icon {
+  background: rgba(112, 183, 152, .10);
+  color: #88cdb0;
+}
