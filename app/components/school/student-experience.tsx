@@ -14,6 +14,9 @@ import {
   sendStudentMessage,
   setAccessibility,
   submitAssignment,
+  reviewSubmission,
+  addAnnouncement,
+  addCalendarEvent,
   unlockedAchievements,
   updateGoal,
   useStudentExperience,
@@ -631,4 +634,118 @@ export function StudentAccessibilityBridge() {
   ].filter(Boolean).join(" ");
 
   return <span className="sx-accessibility-bridge" data-classes={classes} hidden />;
+}
+
+
+export function TeacherStudentWorkflows() {
+  const state = useStudentExperience();
+  const [feedback, setFeedback] = useState<Record<string, string>>({});
+  const [scores, setScores] = useState<Record<string, number>>({});
+  const [announcement, setAnnouncement] = useState({ title: "", body: "", category: "Class" as "School" | "Class" | "Event", date: "" });
+  const [event, setEvent] = useState({ title: "", date: "", time: "", type: "Event" as "Homework" | "Test" | "Holiday" | "Event" });
+
+  return (
+    <div className="sx-stack">
+      <section className="sx-card" id="student-work-review">
+        <PanelHeading
+          kicker="STUDENT SUBMISSIONS"
+          title="Review Oliver’s work"
+          copy="Open submitted work, add a score and send feedback back to the student portal."
+          icon="clipboard"
+        />
+        <div className="sx-review-list">
+          {state.submissions.length === 0 ? (
+            <p>No student submissions yet.</p>
+          ) : state.submissions.map((item) => (
+            <article key={item.id}>
+              <div>
+                <small>{item.status} · {new Date(item.submittedAt).toLocaleDateString("en-GB")}</small>
+                <strong>{item.assignmentTitle}</strong>
+                {item.answer && <p>{item.answer}</p>}
+                {item.fileName && <span>Attachment: {item.fileName}</span>}
+              </div>
+              {item.status === "Reviewed" ? (
+                <div className="sx-feedback-box">
+                  <b>{item.score}%</b>
+                  <p>{item.feedback}</p>
+                </div>
+              ) : (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const body = feedback[item.id]?.trim();
+                    const score = scores[item.id] ?? 80;
+                    if (!body) return;
+                    reviewSubmission(item.id, body, score);
+                  }}
+                >
+                  <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={scores[item.id] ?? 80}
+                    onChange={(e) => setScores((current) => ({ ...current, [item.id]: Number(e.target.value) }))}
+                    aria-label="Score"
+                  />
+                  <textarea
+                    value={feedback[item.id] ?? ""}
+                    onChange={(e) => setFeedback((current) => ({ ...current, [item.id]: e.target.value }))}
+                    placeholder="Write helpful feedback…"
+                    required
+                  />
+                  <Button type="submit">Send feedback</Button>
+                </form>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="sx-card" id="teacher-updates">
+        <PanelHeading
+          kicker="CLASS UPDATES"
+          title="Announcements & calendar"
+          copy="Publish a class notice or add an event that appears in the student portal."
+          icon="calendar"
+        />
+        <div className="sx-teacher-update-grid">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (!announcement.title.trim() || !announcement.body.trim() || !announcement.date) return;
+              addAnnouncement(announcement);
+              setAnnouncement({ title: "", body: "", category: "Class", date: "" });
+            }}
+          >
+            <h3>New announcement</h3>
+            <input value={announcement.title} onChange={(e) => setAnnouncement((current) => ({ ...current, title: e.target.value }))} placeholder="Title" />
+            <textarea value={announcement.body} onChange={(e) => setAnnouncement((current) => ({ ...current, body: e.target.value }))} placeholder="Message" />
+            <select value={announcement.category} onChange={(e) => setAnnouncement((current) => ({ ...current, category: e.target.value as typeof announcement.category }))}>
+              <option>Class</option><option>School</option><option>Event</option>
+            </select>
+            <input type="date" value={announcement.date} onChange={(e) => setAnnouncement((current) => ({ ...current, date: e.target.value }))} />
+            <Button type="submit" variant="outline">Publish announcement</Button>
+          </form>
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (!event.title.trim() || !event.date) return;
+              addCalendarEvent(event);
+              setEvent({ title: "", date: "", time: "", type: "Event" });
+            }}
+          >
+            <h3>Add calendar event</h3>
+            <input value={event.title} onChange={(e) => setEvent((current) => ({ ...current, title: e.target.value }))} placeholder="Event title" />
+            <select value={event.type} onChange={(e) => setEvent((current) => ({ ...current, type: e.target.value as typeof event.type }))}>
+              <option>Homework</option><option>Test</option><option>Holiday</option><option>Event</option>
+            </select>
+            <input type="date" value={event.date} onChange={(e) => setEvent((current) => ({ ...current, date: e.target.value }))} />
+            <input type="time" value={event.time} onChange={(e) => setEvent((current) => ({ ...current, time: e.target.value }))} />
+            <Button type="submit" variant="outline">Add to calendar</Button>
+          </form>
+        </div>
+      </section>
+    </div>
+  );
 }
