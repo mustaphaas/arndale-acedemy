@@ -1,7 +1,4 @@
-import {
-  useActionMutation,
-  useActionQuery,
-} from "@agent-native/core/client/hooks";
+import { useActionMutation, useActionQuery } from "@/lib/assignment-hooks";
 import {
   IconArrowRight,
   IconBook,
