@@ -631,7 +631,7 @@
   gap: 16px;
   min-height: 100svh;
   padding: 18px 18px 18px 0;
-  overflow: hidden;
+  overflow: visible;
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -992,4 +992,29 @@
 .school-student.student-theme-midnight .school-nav-link.is-active .ios-icon {
   background: rgba(112, 183, 152, .10);
   color: #88cdb0;
+}
+
+
+/* Keep long learning pages visible and scrollable */
+.school-student .school-content {
+  min-height: calc(100svh - 36px);
+  overflow: visible;
+}
+.school-student .school-page-content {
+  min-width: 0;
+  overflow: visible;
+}
+.school-student .student-dashboard {
+  overflow: visible;
+}
+.school-student .lf-section {
+  scroll-margin-top: 78px;
+}
+@media (max-width: 800px) {
+  .school-student,
+  .school-student .school-content,
+  .school-student .school-page-content,
+  .school-student .student-dashboard {
+    overflow: visible;
+  }
 }
