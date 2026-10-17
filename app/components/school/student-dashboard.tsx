@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { IOSIcon } from "@/components/school/ios-icons";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import {
   Dialog,
   DialogContent,
@@ -74,8 +74,26 @@ function dueLabel(dueDate: string) {
 }
 
 type SpeechSource = "summary" | "task";
+type StudentView = "overview" | "learn" | "practice" | "progress" | "work" | "help";
+type LearnTool = "lessons" | "ai" | "reading";
+type PracticeTool = "homework" | "path" | "hints";
+type ProgressTool = "overview" | "mastery" | "rewards";
+
+function studentViewForHash(hash: string): StudentView {
+  const section = hash.replace(/^#/, "");
+  if (section === "learn" || section === "practice" || section === "progress" || section === "work" || section === "help") {
+    return section;
+  }
+  if (section === "lessons" || section === "ai-companion" || section === "reading-coach") return "learn";
+  if (section === "homework" || section === "learning-path" || section === "homework-help") return "practice";
+  if (section === "mastery" || section === "rewards") return "progress";
+  if (section === "portfolio") return "work";
+  return "overview";
+}
 
 export function StudentDashboard() {
+  const location = useLocation();
+  const activeView = studentViewForHash(location.hash);
   const homework = useActionQuery<Assignment[]>("list-assignments", {});
   const updateAssignment = useActionMutation<
     Assignment | undefined,
@@ -87,6 +105,9 @@ export function StudentDashboard() {
   const milestone = getHomeworkMilestone(summary);
   const nextTask = assignments.find((assignment) => !assignment.completed);
   const [filter, setFilter] = useState<HomeworkFilter>("all");
+  const [learnTool, setLearnTool] = useState<LearnTool>("lessons");
+  const [practiceTool, setPracticeTool] = useState<PracticeTool>("homework");
+  const [progressTool, setProgressTool] = useState<ProgressTool>("overview");
   const [lessonIndex, setLessonIndex] = useState(0);
   const [selectedTask, setSelectedTask] = useState<Assignment | null>(null);
   const [taskFeedback, setTaskFeedback] = useState<{
@@ -103,6 +124,19 @@ export function StudentDashboard() {
   const homeworkHeadingRef = useRef<HTMLHeadingElement | null>(null);
   const selectedLesson = SAMPLE_LESSONS[lessonIndex];
   const visibleAssignments = filterHomework(assignments, filter);
+
+  useEffect(() => {
+    const section = location.hash.replace(/^#/, "");
+    if (section === "ai-companion") setLearnTool("ai");
+    if (section === "reading-coach") setLearnTool("reading");
+    if (section === "lessons") setLearnTool("lessons");
+    if (section === "learning-path") setPracticeTool("path");
+    if (section === "homework-help") setPracticeTool("hints");
+    if (section === "homework") setPracticeTool("homework");
+    if (section === "mastery") setProgressTool("mastery");
+    if (section === "rewards") setProgressTool("rewards");
+    if (section === "progress") setProgressTool("overview");
+  }, [location.hash]);
 
   useEffect(() => {
     setSpeechAvailable(
@@ -246,7 +280,7 @@ export function StudentDashboard() {
 
 
   return (
-    <div className="student-dashboard sd-root">
+    <div className={`student-dashboard sd-root sd-view-${activeView} sd-learn-${learnTool} sd-practice-${practiceTool} sd-progress-${progressTool}`}>
       <section
         className="sd-day"
         id="overview"
@@ -295,7 +329,7 @@ export function StudentDashboard() {
       </section>
 
       <div className="sd-quick-stats" aria-label="Homework at a glance">
-        <Link className="sd-stat sd-stat-link" to="/student#homework" aria-label="View all classroom tasks">
+        <Link className="sd-stat sd-stat-link" to="/student#practice" aria-label="View all classroom tasks">
           <span className="sd-stat-icon sd-tone-blue">
             <IOSIcon name="clipboard" size={22} />
           </span>
@@ -305,7 +339,7 @@ export function StudentDashboard() {
           </div>
           <IOSIcon className="sd-stat-arrow" name="arrowRight" size={16} />
         </Link>
-        <Link className="sd-stat sd-stat-link" to="/student#homework" aria-label="View tasks to try next">
+        <Link className="sd-stat sd-stat-link" to="/student#practice" aria-label="View tasks to try next">
           <span className="sd-stat-icon sd-tone-yellow">
             <IOSIcon name="pencil" size={22} />
           </span>
@@ -327,7 +361,102 @@ export function StudentDashboard() {
         </Link>
       </div>
 
-      <div className="sd-content-grid">
+      {activeView === "overview" && (
+        <nav className="sd-home-launcher" aria-label="Choose what to do next">
+          <Link to="/student#learn">
+            <span className="sd-launch-icon sd-tone-blue"><IOSIcon name="book" size={23} /></span>
+            <strong>Learn</strong>
+            <small>Lessons, AI tutor & reading</small>
+            <IOSIcon name="arrowRight" size={17} />
+          </Link>
+          <Link to="/student#practice">
+            <span className="sd-launch-icon sd-tone-yellow"><IOSIcon name="checklist" size={23} /></span>
+            <strong>Practice</strong>
+            <small>Homework, learning path & hints</small>
+            <IOSIcon name="arrowRight" size={17} />
+          </Link>
+          <Link to="/student#progress">
+            <span className="sd-launch-icon sd-tone-mint"><IOSIcon name="trophy" size={23} /></span>
+            <strong>Progress</strong>
+            <small>Mastery, rewards & achievements</small>
+            <IOSIcon name="arrowRight" size={17} />
+          </Link>
+          <Link to="/student#work">
+            <span className="sd-launch-icon sd-tone-pink"><IOSIcon name="clipboard" size={23} /></span>
+            <strong>My work</strong>
+            <small>Projects and portfolio</small>
+            <IOSIcon name="arrowRight" size={17} />
+          </Link>
+        </nav>
+      )}
+
+      {activeView === "learn" && (
+        <div className="sd-view-tabs" role="tablist" aria-label="Learn tools">
+          {([
+            ["lessons", "Lessons", "book"],
+            ["ai", "AI tutor", "sparkles"],
+            ["reading", "Reading coach", "volume"],
+          ] as const).map(([value, label, icon]) => (
+            <button
+              key={value}
+              type="button"
+              role="tab"
+              aria-selected={learnTool === value}
+              className={learnTool === value ? "is-active" : ""}
+              onClick={() => setLearnTool(value)}
+            >
+              <IOSIcon name={icon} size={17} />
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {activeView === "practice" && (
+        <div className="sd-view-tabs" role="tablist" aria-label="Practice tools">
+          {([
+            ["homework", "Homework", "checklist"],
+            ["path", "My path", "sprout"],
+            ["hints", "Hints", "help"],
+          ] as const).map(([value, label, icon]) => (
+            <button
+              key={value}
+              type="button"
+              role="tab"
+              aria-selected={practiceTool === value}
+              className={practiceTool === value ? "is-active" : ""}
+              onClick={() => setPracticeTool(value)}
+            >
+              <IOSIcon name={icon} size={17} />
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {activeView === "progress" && (
+        <div className="sd-view-tabs" role="tablist" aria-label="Progress tools">
+          {([
+            ["overview", "Overview", "sprout"],
+            ["mastery", "Mastery", "trophy"],
+            ["rewards", "Rewards", "sparkles"],
+          ] as const).map(([value, label, icon]) => (
+            <button
+              key={value}
+              type="button"
+              role="tab"
+              aria-selected={progressTool === value}
+              className={progressTool === value ? "is-active" : ""}
+              onClick={() => setProgressTool(value)}
+            >
+              <IOSIcon name={icon} size={17} />
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
+
+            <div className="sd-content-grid">
         <div className="sd-main-column">
           <section
             className="sd-lessons"
@@ -336,8 +465,8 @@ export function StudentDashboard() {
           >
             <div className="sd-section-heading">
               <h2 id="sd-lessons-title">Let’s explore today</h2>
-              <Link to="/student#timetable" className="sd-text-link">
-                Sample Wednesday <IOSIcon name="arrowRight" size={16} />
+              <Link to="/student#overview" className="sd-text-link">
+                Back to My day <IOSIcon name="arrowRight" size={16} />
               </Link>
             </div>
             <div
@@ -718,8 +847,8 @@ export function StudentDashboard() {
                 <dd>Story circle</dd>
               </div>
             </dl>
-            <Link to="/student#lessons" className="sd-text-link">
-              Back to our lessons
+            <Link to="/student#learn" className="sd-text-link">
+              Back to Learn
               <IOSIcon name="arrowRight" size={16} />
             </Link>
           </section>

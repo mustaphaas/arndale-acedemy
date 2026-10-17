@@ -1641,3 +1641,228 @@
   background: rgba(255,255,255,.13);
   backdrop-filter: blur(20px) saturate(160%);
 }
+
+
+/* Compact interactive student navigation */
+.student-dashboard .sd-home-launcher {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.student-dashboard .sd-home-launcher > a {
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  grid-template-areas:
+    "icon title arrow"
+    "icon copy arrow";
+  gap: 2px 10px;
+  align-items: center;
+  min-height: 88px;
+  border: 1px solid rgba(255,255,255,.72);
+  border-radius: 20px;
+  background: rgba(255,255,255,.46);
+  padding: 14px;
+  color: var(--sd-ink);
+  text-decoration: none;
+  box-shadow:
+    0 12px 28px rgba(64,79,91,.06),
+    inset 0 1px 0 rgba(255,255,255,.82);
+  backdrop-filter: blur(20px) saturate(145%);
+  -webkit-backdrop-filter: blur(20px) saturate(145%);
+  transition: transform 160ms ease, background 160ms ease;
+}
+.student-dashboard .sd-home-launcher > a:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.62);
+}
+.student-dashboard .sd-launch-icon {
+  grid-area: icon;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 14px;
+}
+.student-dashboard .sd-home-launcher strong {
+  grid-area: title;
+  font-size: 14px;
+}
+.student-dashboard .sd-home-launcher small {
+  grid-area: copy;
+  color: var(--sd-muted);
+  font-size: 10px;
+  line-height: 1.35;
+}
+.student-dashboard .sd-home-launcher > a > .ios-icon:last-child {
+  grid-area: arrow;
+  color: var(--sd-muted);
+  opacity: .6;
+}
+
+.student-dashboard .sd-view-tabs {
+  display: inline-flex;
+  gap: 6px;
+  margin: 0 0 16px;
+  border: 1px solid rgba(255,255,255,.66);
+  border-radius: 16px;
+  background: rgba(255,255,255,.32);
+  padding: 5px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
+  backdrop-filter: blur(18px) saturate(145%);
+}
+.student-dashboard .sd-view-tabs button {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  padding: 0 12px;
+  color: var(--sd-muted);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.student-dashboard .sd-view-tabs button.is-active {
+  color: var(--student-accent, var(--sd-green));
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 4px 12px rgba(61,78,89,.05);
+}
+
+/* One workspace at a time: no long student page */
+.student-dashboard .lf-section {
+  display: none;
+}
+.student-dashboard.sd-view-overview .sd-content-grid,
+.student-dashboard.sd-view-overview .lf-section {
+  display: none;
+}
+.student-dashboard.sd-view-overview .sd-day,
+.student-dashboard.sd-view-overview .sd-quick-stats,
+.student-dashboard.sd-view-overview .sd-home-launcher {
+  display: grid;
+}
+
+.student-dashboard:not(.sd-view-overview) .sd-day,
+.student-dashboard:not(.sd-view-overview) .sd-quick-stats,
+.student-dashboard:not(.sd-view-overview) .sd-home-launcher {
+  display: none;
+}
+
+.student-dashboard.sd-view-learn .sd-content-grid,
+.student-dashboard.sd-view-practice .sd-content-grid,
+.student-dashboard.sd-view-progress .sd-content-grid,
+.student-dashboard.sd-view-help .sd-content-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1fr);
+}
+.student-dashboard.sd-view-learn .sd-main-column,
+.student-dashboard.sd-view-practice .sd-main-column,
+.student-dashboard.sd-view-progress .sd-side-column,
+.student-dashboard.sd-view-help .sd-side-column {
+  display: block;
+}
+.student-dashboard.sd-view-learn .sd-side-column,
+.student-dashboard.sd-view-practice .sd-side-column,
+.student-dashboard.sd-view-progress .sd-main-column,
+.student-dashboard.sd-view-help .sd-main-column {
+  display: none;
+}
+
+.student-dashboard.sd-view-learn .sd-main-column > * {
+  display: none;
+}
+.student-dashboard.sd-view-learn.sd-learn-lessons .sd-lessons {
+  display: block;
+}
+.student-dashboard.sd-view-learn.sd-learn-ai #ai-companion,
+.student-dashboard.sd-view-learn.sd-learn-reading #reading-coach {
+  display: block;
+}
+
+.student-dashboard.sd-view-practice .sd-main-column > * {
+  display: none;
+}
+.student-dashboard.sd-view-practice.sd-practice-homework .sd-homework {
+  display: block;
+}
+.student-dashboard.sd-view-practice.sd-practice-path #learning-path,
+.student-dashboard.sd-view-practice.sd-practice-hints #homework-help {
+  display: block;
+}
+
+.student-dashboard.sd-view-progress .sd-side-column > * {
+  display: none;
+}
+.student-dashboard.sd-view-progress.sd-progress-overview .sd-progress {
+  display: block;
+}
+.student-dashboard.sd-view-progress.sd-progress-mastery #mastery,
+.student-dashboard.sd-view-progress.sd-progress-rewards #rewards {
+  display: block;
+}
+
+.student-dashboard.sd-view-work .sd-content-grid,
+.student-dashboard.sd-view-work .sd-view-tabs {
+  display: none;
+}
+.student-dashboard.sd-view-work #portfolio {
+  display: block;
+}
+
+.student-dashboard.sd-view-help .sd-side-column > * {
+  display: none;
+}
+.student-dashboard.sd-view-help .sd-help {
+  display: block;
+}
+.student-dashboard.sd-view-help .sd-view-tabs {
+  display: none;
+}
+
+/* Remove vertical spacing inherited from the old stacked layout */
+.student-dashboard .lf-section + .lf-section {
+  margin-top: 0;
+}
+.student-dashboard.sd-view-learn > .lf-section,
+.student-dashboard.sd-view-practice > .lf-section,
+.student-dashboard.sd-view-progress > .lf-section,
+.student-dashboard.sd-view-work > .lf-section {
+  margin-top: 0;
+}
+
+.school-student.student-theme-midnight .student-dashboard .sd-home-launcher > a,
+.school-student.student-theme-midnight .student-dashboard .sd-view-tabs {
+  border-color: rgba(255,255,255,.07);
+  background: rgba(255,255,255,.035);
+}
+.school-student.student-theme-midnight .student-dashboard .sd-view-tabs button.is-active {
+  color: #9bd5ba;
+  background: rgba(255,255,255,.07);
+}
+
+@media (max-width: 920px) {
+  .student-dashboard .sd-home-launcher {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .student-dashboard .sd-home-launcher {
+    grid-template-columns: 1fr;
+  }
+  .student-dashboard .sd-home-launcher > a {
+    min-height: 74px;
+  }
+  .student-dashboard .sd-view-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    width: 100%;
+  }
+  .student-dashboard .sd-view-tabs button {
+    justify-content: center;
+    padding-inline: 8px;
+  }
+}
