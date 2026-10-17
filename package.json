@@ -5,6 +5,11 @@
   "description": "A primary school portal for student learning and parent engagement.",
   "type": "module",
   "scripts": {
+    "dev:local": "vite --config vite.local.config.ts",
+    "build:local": "vite build --config vite.local.config.ts",
+    "preview:local": "vite preview --config vite.local.config.ts",
+    "typecheck:local": "tsc -p tsconfig.local.json",
+    "test:local": "vitest run local",
     "migrate:production": "tsx scripts/migrate-production.ts && pnpm db:migrate",
     "dev": "agent-native dev",
     "build": "agent-native build",

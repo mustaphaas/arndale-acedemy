@@ -1,0 +1,260 @@
+.school-shell.local-demo-home {
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  gap: 36px;
+  padding: 30px clamp(20px, 5vw, 70px) 26px;
+}
+
+.local-demo-home-header {
+  display: flex;
+  width: min(100%, 1080px);
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 auto;
+}
+
+.local-demo-home .school-brand {
+  border-radius: 12px;
+  padding: 0;
+}
+
+.local-demo-home-badge {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #ffffffd9;
+  border-radius: 999px;
+  padding: 7px 12px;
+  color: var(--school-green);
+  background: #edf5efb8;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.local-demo-home-badge > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6c927a;
+}
+
+.local-demo-home-main {
+  display: flex;
+  width: min(100%, 1000px);
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding-block: 24px 36px;
+}
+
+.local-demo-home-intro {
+  text-align: center;
+}
+
+.local-demo-home-intro h1 {
+  margin: 0;
+  color: var(--school-ink);
+  font-size: clamp(34px, 4.8vw, 54px);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  line-height: 1.14;
+}
+
+.local-demo-home-intro h1 span {
+  display: block;
+  color: var(--school-green);
+}
+
+.local-demo-home-intro p {
+  max-width: 38ch;
+  margin: 18px auto 0;
+  color: var(--school-muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.local-demo-home-views {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 38px;
+}
+
+.local-demo-home-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  border: 1px solid #fff;
+  border-radius: 23px;
+  padding: 25px;
+  color: var(--school-ink);
+  background: #ffffffb3;
+  box-shadow:
+    0 8px 26px #4a657408,
+    inset 0 1px #fff;
+  text-decoration: none;
+  transition:
+    background 0.16s ease,
+    box-shadow 0.16s ease,
+    transform 0.16s ease;
+}
+
+.local-demo-home-card:hover {
+  transform: translateY(-3px);
+  background: #ffffffe6;
+  box-shadow: 0 12px 28px #4a657412;
+}
+
+.local-demo-home-card:focus-visible,
+.local-demo-home .school-brand:focus-visible {
+  outline: 3px solid var(--school-focus);
+  outline-offset: 5px;
+}
+
+.local-demo-home-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid #fff;
+  border-radius: 16px;
+}
+
+.local-demo-home-card--student .local-demo-home-icon {
+  color: #9a5b74;
+  background: #f5e5ee;
+}
+
+.local-demo-home-card--parent .local-demo-home-icon {
+  color: #547995;
+  background: #e2edf7;
+}
+
+.local-demo-home-card--teacher .local-demo-home-icon {
+  color: #47765e;
+  background: #e1efe5;
+}
+
+.local-demo-home-card h2 {
+  margin: 20px 0 8px;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+}
+
+.local-demo-home-card p {
+  margin: 0 0 23px;
+  color: var(--school-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.local-demo-home-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  border-top: 1px solid #dce4e899;
+  padding-top: 15px;
+  color: #5d707c;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.local-demo-home-card-footer svg {
+  flex: 0 0 20px;
+  color: var(--school-green);
+}
+
+.local-demo-home-note {
+  display: flex;
+  max-width: 610px;
+  align-items: flex-start;
+  gap: 11px;
+  margin: 28px auto 0;
+  border: 1px solid #ffffffb3;
+  border-radius: 15px;
+  padding: 16px 19px;
+  color: var(--school-muted);
+  background: #ffffff57;
+}
+
+.local-demo-home-note > svg {
+  flex: 0 0 21px;
+  margin-top: 1px;
+  color: var(--school-green);
+}
+
+.local-demo-home-note p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.local-demo-home-note strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #456450;
+  font-weight: 650;
+}
+
+@media (max-width: 680px) {
+  .school-shell.local-demo-home {
+    gap: 28px;
+    padding: 22px 20px;
+  }
+
+  .local-demo-home-main {
+    padding-block: 12px;
+  }
+
+  .local-demo-home-views {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .local-demo-home-card {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    column-gap: 14px;
+    padding: 20px;
+  }
+
+  .local-demo-home-icon {
+    grid-row: 1 / 3;
+  }
+
+  .local-demo-home-card h2 {
+    margin: 0 0 5px;
+  }
+
+  .local-demo-home-card p {
+    grid-column: 2;
+    margin: 0;
+  }
+
+  .local-demo-home-card-footer {
+    grid-column: 1 / -1;
+    margin-top: 16px;
+    padding-top: 12px;
+  }
+
+  .local-demo-home-note {
+    margin-top: 20px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .local-demo-home-header {
+    flex-wrap: wrap;
+  }
+}
