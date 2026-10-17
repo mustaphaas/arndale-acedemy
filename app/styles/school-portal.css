@@ -508,3 +508,118 @@
     padding: 0;
   }
 }
+
+
+/* Student profile menu and pupil-selected themes */
+.school-account-button {
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  padding: 4px 7px;
+  color: inherit;
+  cursor: pointer;
+  transition: background 160ms ease;
+}
+.school-account-button:hover {
+  background: rgba(255, 255, 255, 0.62);
+}
+.school-account-button > svg {
+  color: #819099;
+}
+.school-profile-menu {
+  width: 245px;
+  border-color: rgba(76, 99, 90, 0.12);
+  border-radius: 15px;
+  padding: 7px;
+}
+.school-profile-name,
+.school-profile-class {
+  display: block;
+}
+.school-profile-name {
+  color: #314b40;
+  font-size: 13px;
+  font-weight: 750;
+}
+.school-profile-class {
+  margin-top: 3px;
+  color: #7b8a84;
+  font-size: 11px;
+  font-weight: 500;
+}
+.school-theme-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #667a70;
+  font-size: 11px;
+}
+.school-theme-option {
+  gap: 9px;
+}
+.school-theme-swatch {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(57, 79, 69, 0.12);
+}
+.school-theme-swatch.is-garden {
+  background: linear-gradient(135deg, #dcebdc, #f7e6c4);
+}
+.school-theme-swatch.is-sky {
+  background: linear-gradient(135deg, #dcecf8, #e7e2f7);
+}
+.school-theme-swatch.is-sunshine {
+  background: linear-gradient(135deg, #fff0b9, #f8dcd3);
+}
+.school-theme-selected {
+  margin-left: auto;
+  color: #678272;
+  font-size: 10px;
+  font-weight: 700;
+}
+.school-profile-logout {
+  color: #8c4f42;
+}
+.school-profile-logout svg {
+  color: #a05a4b;
+}
+
+.school-student.student-theme-garden {
+  --student-banner: #dfeedd;
+  --student-banner-art: #d4e3d3;
+  --student-accent: #287454;
+  --student-soft: #eef5e8;
+  --school-green: #3f725d;
+  --school-focus: #3b7461;
+  background:
+    radial-gradient(ellipse at 8% 9%, rgba(248, 231, 202, 0.5), transparent 29%),
+    radial-gradient(ellipse at 86% 20%, rgba(215, 234, 218, 0.7), transparent 34%),
+    linear-gradient(125deg, #f8f7f2 0%, #f2f5ef 52%, #f8f5ee 100%);
+}
+.school-student.student-theme-sky {
+  --student-banner: #dfeef8;
+  --student-banner-art: #d4e4f2;
+  --student-accent: #326d8f;
+  --student-soft: #edf4fb;
+  --school-green: #376e84;
+  --school-focus: #326d8f;
+  background:
+    radial-gradient(ellipse at 10% 8%, rgba(221, 236, 251, 0.8), transparent 30%),
+    radial-gradient(ellipse at 88% 16%, rgba(230, 225, 249, 0.72), transparent 35%),
+    linear-gradient(125deg, #f7fafc 0%, #edf4f8 50%, #f6f4fa 100%);
+}
+.school-student.student-theme-sunshine {
+  --student-banner: #fff0bd;
+  --student-banner-art: #f8dfb4;
+  --student-accent: #a06f28;
+  --student-soft: #fff7df;
+  --school-green: #7b6d35;
+  --school-focus: #8a6b29;
+  background:
+    radial-gradient(ellipse at 9% 8%, rgba(255, 235, 171, 0.66), transparent 31%),
+    radial-gradient(ellipse at 88% 19%, rgba(247, 217, 207, 0.64), transparent 35%),
+    linear-gradient(125deg, #fffaf0 0%, #f9f5eb 50%, #fbf0ea 100%);
+}
