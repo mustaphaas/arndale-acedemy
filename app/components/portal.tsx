@@ -53,11 +53,40 @@ const studentGlassStyles = `
     color: var(--student-ink);
   }
   .student-portal .portal-sidebar {
-    border-right: 1px solid rgba(255, 255, 255, .84);
-    background: linear-gradient(165deg, rgba(255,255,255,.72), rgba(245,248,252,.54) 58%, rgba(248,239,246,.6));
-    box-shadow: 10px 0 34px rgba(76, 96, 118, .09), inset -1px 0 rgba(255,255,255,.55);
-    backdrop-filter: blur(28px) saturate(145%);
-    -webkit-backdrop-filter: blur(28px) saturate(145%);
+    position: sticky;
+    isolation: isolate;
+    overflow: hidden;
+    border-right: 1px solid rgba(255, 255, 255, .82);
+    background: linear-gradient(155deg, rgba(255,255,255,.57), rgba(245,248,252,.34) 55%, rgba(242,238,249,.43));
+    box-shadow: 12px 0 36px rgba(66, 87, 111, .11), inset -1px 0 rgba(255,255,255,.68);
+    backdrop-filter: blur(36px) saturate(180%);
+    -webkit-backdrop-filter: blur(36px) saturate(180%);
+  }
+  .student-portal .portal-sidebar::before {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background: linear-gradient(145deg, rgba(255,255,255,.64), transparent 28%, rgba(255,255,255,.12) 60%, rgba(255,255,255,.3));
+    content: "";
+    pointer-events: none;
+  }
+  .student-portal .portal-sidebar::after {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.34) 48%, rgba(255,255,255,.82));
+    content: "";
+    pointer-events: none;
+  }
+  .student-portal .portal-sidebar > * { position: relative; z-index: 1; }
+  .student-portal .portal-sidebar,
+  .student-portal .portal-sidebar button,
+  .student-portal .portal-sidebar a {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
   .student-portal .brand-mark {
     border: 1px solid rgba(255,255,255,.9);
@@ -71,20 +100,53 @@ const studentGlassStyles = `
     backdrop-filter: blur(24px) saturate(155%);
     -webkit-backdrop-filter: blur(24px) saturate(155%);
   }
-  .student-portal .side-nav { margin-top: 25px; }
-  .student-portal .side-link { color: #586a79; }
+  .student-portal .side-nav { margin-top: 25px; gap: 4px; }
+  .student-portal .side-link {
+    min-height: 40px;
+    gap: 11px;
+    border: 1px solid transparent;
+    color: #56697b;
+    font-size: 12px;
+    font-weight: 560;
+    letter-spacing: -.18px;
+    transition: background .18s ease, color .18s ease, box-shadow .18s ease, transform .18s ease;
+  }
+  .student-portal .side-link svg {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    stroke-width: 1.65;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
   .student-portal .side-link:hover,
   .student-portal .side-link:focus-visible {
-    background: rgba(255,255,255,.66);
-    box-shadow: inset 0 1px rgba(255,255,255,.9), 0 4px 13px rgba(73,94,115,.06);
+    transform: translateX(1px);
+    border-color: rgba(255,255,255,.68);
+    background: linear-gradient(115deg, rgba(255,255,255,.65), rgba(255,255,255,.3));
+    box-shadow: inset 0 1px rgba(255,255,255,.98), 0 5px 15px rgba(73,94,115,.075);
     color: #365b79;
   }
   .student-portal .side-link.selected {
-    border: 1px solid rgba(255,255,255,.9);
-    background: linear-gradient(110deg, rgba(219,239,232,.83), rgba(223,233,250,.75));
-    box-shadow: 0 5px 14px rgba(61,105,113,.09), inset 0 1px rgba(255,255,255,.95);
+    border: 1px solid rgba(255,255,255,.94);
+    background: linear-gradient(115deg, rgba(220,242,232,.73), rgba(220,232,251,.62));
+    box-shadow: 0 6px 16px rgba(61,105,113,.1), inset 0 1px rgba(255,255,255,1), inset 0 -1px rgba(255,255,255,.28);
     color: #316852;
+    font-weight: 620;
+    backdrop-filter: blur(22px) saturate(175%);
+    -webkit-backdrop-filter: blur(22px) saturate(175%);
   }
+  .student-portal .sidebar-note {
+    border: 1px solid rgba(255,255,255,.86);
+    background: linear-gradient(145deg, rgba(255,249,218,.69), rgba(255,237,225,.47));
+    box-shadow: 0 10px 26px rgba(117,106,70,.09), inset 0 1px rgba(255,255,255,.98), inset 0 -1px rgba(255,255,255,.32);
+    backdrop-filter: blur(28px) saturate(155%);
+    -webkit-backdrop-filter: blur(28px) saturate(155%);
+  }
+  .student-portal .sidebar-note strong { color: #465642; font-size: 11px; letter-spacing: -.12px; }
+  .student-portal .sidebar-note p { color: #717864; font-size: 10px; line-height: 1.5; }
+  .student-portal .settings-link { color: #687a88; font-size: 12px; }
+  .student-portal .settings-link svg { stroke-width: 1.65; }
   .student-portal .sidebar-note {
     border: 1px solid rgba(255,255,255,.76);
     background: linear-gradient(145deg, rgba(255,249,218,.88), rgba(255,237,225,.76));
@@ -217,7 +279,8 @@ const studentGlassStyles = `
   .student-portal button:focus-visible,
   .student-portal a:focus-visible { outline-color: #7198b5; }
   @media (max-width: 760px) {
-    .student-portal .portal-sidebar { border-bottom: 1px solid rgba(255,255,255,.86); background: rgba(248,250,252,.82); box-shadow: 0 7px 22px rgba(75,93,112,.055); }
+    .student-portal .portal-sidebar { border-bottom: 1px solid rgba(255,255,255,.86); background: rgba(248,250,252,.68); box-shadow: 0 7px 22px rgba(75,93,112,.075); }
+    .student-portal .portal-sidebar::after { top: auto; right: 0; bottom: 0; width: 100%; height: 1px; }
     .student-portal .side-nav { margin-top: 11px; }
     .student-portal .header-tools { flex-wrap: wrap; justify-content: flex-end; }
     .student-portal .header-profile { gap: 0; padding: 4px; }
