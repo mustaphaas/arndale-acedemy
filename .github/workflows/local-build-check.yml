@@ -1,0 +1,38 @@
+name: Local build check
+
+on:
+  push:
+    branches:
+      - diagnose/blank-page
+  workflow_dispatch:
+
+jobs:
+  build-local:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck local app
+        run: pnpm typecheck:local
+
+      - name: Test local app
+        run: pnpm test:local
+
+      - name: Build local app
+        run: pnpm build:local
