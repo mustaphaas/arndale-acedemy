@@ -36,6 +36,8 @@ import { viewForPath } from "@/lib/portal-navigation";
 import { signOut } from "@/lib/portal-session";
 import { SAMPLE_LEARNER, SCHOOL_NAME, type PortalRole } from "@/lib/school";
 import { IOSIcon, type IOSIconName } from "@/components/school/ios-icons";
+import { StudentUtilityCentre } from "@/components/school/student-experience";
+import { useStudentExperience } from "@/lib/student-experience";
 
 import "@/styles/school-portal.css";
 
@@ -105,6 +107,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
   const [signingOut, setSigningOut] = useState(false);
   const [signOutError, setSignOutError] = useState("");
   const [studentTheme, setStudentTheme] = useState<"garden" | "sky" | "sunshine" | "midnight" | "glass">("garden");
+  const studentExperience = useStudentExperience();
 
   useEffect(() => {
     if (role !== "student") return;
@@ -222,8 +225,18 @@ export function PortalShell({ children }: { children: ReactNode }) {
     </>
   );
 
+  const accessibilityClasses =
+    role === "student"
+      ? [
+          `sx-text-${studentExperience.accessibility.textSize}`,
+          studentExperience.accessibility.highContrast ? "sx-high-contrast" : "",
+          studentExperience.accessibility.reducedMotion ? "sx-reduced-motion" : "",
+          studentExperience.accessibility.readingFont ? "sx-reading-font" : "",
+        ].filter(Boolean).join(" ")
+      : "";
+
   return (
-    <div className={`school-shell school-${role}${role === "student" ? ` student-theme-${studentTheme}` : ""}`}>
+    <div className={`school-shell school-${role}${role === "student" ? ` student-theme-${studentTheme} ${accessibilityClasses}` : ""}`}>
       <a className="school-skip-link" href="#portal-content">
         Skip to dashboard
       </a>
@@ -264,6 +277,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
             </div>
           </div>
           <div className="school-topbar-right">
+            {role === "student" && <StudentUtilityCentre />}
             {role === "student" && (
               <Button
                 type="button"
