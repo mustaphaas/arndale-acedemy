@@ -71,6 +71,7 @@ const studentGlassStyles = `
     backdrop-filter: blur(24px) saturate(155%);
     -webkit-backdrop-filter: blur(24px) saturate(155%);
   }
+  .student-portal .side-nav { margin-top: 25px; }
   .student-portal .side-link { color: #586a79; }
   .student-portal .side-link:hover,
   .student-portal .side-link:focus-visible {
@@ -118,6 +119,22 @@ const studentGlassStyles = `
   }
   .student-portal .icon-button:hover,
   .student-portal .read-aloud:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(70,90,112,.12); }
+  .student-portal .header-profile {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid rgba(255,255,255,.94);
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(255,255,255,.72), rgba(255,255,255,.42));
+    padding: 5px 10px 5px 5px;
+    box-shadow: 0 6px 18px rgba(70,90,112,.08), inset 0 1px rgba(255,255,255,.98);
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+  }
+  .student-portal .header-profile .avatar { width: 34px; height: 34px; flex: 0 0 34px; }
+  .student-portal .header-profile-copy { display: grid; gap: 3px; }
+  .student-portal .header-profile-copy strong { color: #3e5362; font-size: 10px; }
+  .student-portal .header-profile-copy span { color: #82909c; font-size: 8px; }
   .student-portal .content-wrap { max-width: 1180px; }
   .student-portal .welcome-banner {
     border: 1px solid rgba(255,255,255,.93);
@@ -201,6 +218,10 @@ const studentGlassStyles = `
   .student-portal a:focus-visible { outline-color: #7198b5; }
   @media (max-width: 760px) {
     .student-portal .portal-sidebar { border-bottom: 1px solid rgba(255,255,255,.86); background: rgba(248,250,252,.82); box-shadow: 0 7px 22px rgba(75,93,112,.055); }
+    .student-portal .side-nav { margin-top: 11px; }
+    .student-portal .header-tools { flex-wrap: wrap; justify-content: flex-end; }
+    .student-portal .header-profile { gap: 0; padding: 4px; }
+    .student-portal .header-profile-copy { display: none; }
     .student-portal .welcome-banner { overflow: hidden; }
     .student-portal .fox-scene { opacity: .86; }
   }
@@ -248,11 +269,11 @@ function PortalFrame({
           <span className="brand-mark"><IconLeaf size={21} stroke={2.4} /></span>
           <span><strong>littleleaf</strong><small>A place to grow</small></span>
         </Link>
-        <div className="profile-card">
-          <div className="avatar avatar-student">{current === "student" ? "OJ" : current === "teacher" ? "MT" : "OJ"}</div>
+        {current !== "student" && <div className="profile-card">
+          <div className="avatar avatar-student">{current === "teacher" ? "MT" : "OJ"}</div>
           <strong>{name}</strong>
           <span>{subtitle}</span>
-        </div>
+        </div>}
         {current === "student" ? (
           <nav className="side-nav" aria-label="Student navigation">
             {links.map(({ label, href, icon: Icon, badge }, index) => (
@@ -288,6 +309,7 @@ function PortalFrame({
           <div className="header-tools">
             <RoleLinks current={current} />
             <button className="icon-button" aria-label="Notifications"><IconBell size={18} /><i /></button>
+            {current === "student" && <div className="header-profile"><div className="avatar avatar-student">OJ</div><div className="header-profile-copy"><strong>{name}</strong><span>{subtitle}</span></div></div>}
           </div>
         </header>
         {children}
