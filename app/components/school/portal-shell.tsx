@@ -201,13 +201,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
         >
           <IconLogout size={20} stroke={1.65} />
           <span>
-            {isLocalDemo
-              ? signingOut
-                ? "Opening demo home…"
-                : "Demo home"
-              : signingOut
-                ? "Signing out…"
-                : "Sign out"}
+            {signingOut ? "Signing out…" : "Logout"}
           </span>
         </button>
         <p>Learning with Littleleaf</p>
@@ -240,9 +234,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
                   {portalLabels[role]} navigation
                 </SheetTitle>
                 <SheetDescription className="sr-only">
-                  {isLocalDemo
-                    ? "Choose a dashboard section or return to the demo home."
-                    : "Choose a dashboard section or sign out."}
+                  Choose a dashboard section or log out.
                 </SheetDescription>
                 {sidebarContents}
               </SheetContent>
