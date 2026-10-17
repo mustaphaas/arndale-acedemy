@@ -2038,3 +2038,47 @@
     grid-template-columns: repeat(6, 132px);
   }
 }
+
+
+/* Complete student portal workspace routing */
+.student-dashboard.sd-view-work .sd-view-tabs {
+  display: inline-flex;
+}
+.student-dashboard.sd-view-work #portfolio {
+  display: none;
+}
+.student-dashboard.sd-view-work.sd-work-portfolio #portfolio {
+  display: block;
+}
+.student-dashboard.sd-view-work.sd-work-submissions #portfolio,
+.student-dashboard.sd-view-work.sd-work-notebook #portfolio {
+  display: none;
+}
+.student-dashboard.sd-view-learn.sd-learn-library .sd-content-grid,
+.student-dashboard.sd-view-learn.sd-learn-classroom .sd-content-grid,
+.student-dashboard.sd-view-practice.sd-practice-quiz .sd-content-grid,
+.student-dashboard.sd-view-progress.sd-progress-results .sd-content-grid,
+.student-dashboard.sd-view-progress.sd-progress-goals .sd-content-grid {
+  display: none;
+}
+.student-dashboard.sd-view-learn.sd-learn-library > .sx-stack,
+.student-dashboard.sd-view-learn.sd-learn-classroom > .sx-stack,
+.student-dashboard.sd-view-practice.sd-practice-quiz > .sx-card,
+.student-dashboard.sd-view-progress.sd-progress-results > .sx-stack,
+.student-dashboard.sd-view-progress.sd-progress-goals > .sx-stack,
+.student-dashboard.sd-view-work.sd-work-submissions > .sx-stack,
+.student-dashboard.sd-view-work.sd-work-notebook > .sx-stack {
+  display: grid;
+}
+.student-dashboard.sd-view-progress.sd-progress-rewards > .sx-stack {
+  display: grid;
+  margin-top: 12px;
+}
+.student-dashboard.sd-view-overview .sx-day-grid {
+  display: grid;
+}
+@media (max-width: 560px) {
+  .student-dashboard.sd-view-work .sd-view-tabs {
+    display: grid;
+  }
+}
