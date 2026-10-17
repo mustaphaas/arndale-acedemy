@@ -360,10 +360,10 @@ export function StudentDashboard() {
                       <span className="sd-lesson-icon">
                         <IOSIcon name={lesson.iosIcon} size={23} />
                       </span>
-                      <IconArrowRight
+                      <IOSIcon
                         className="sd-lesson-arrow"
+                        name="arrowRight"
                         size={18}
-                        aria-hidden="true"
                       />
                     </span>
                     <span className="sd-lesson-subject">{lesson.subject}</span>
@@ -438,7 +438,7 @@ export function StudentDashboard() {
               </div>
             ) : assignments.length === 0 ? (
               <div className="sd-data-state">
-                <IconBook size={30} aria-hidden="true" />
+                <IOSIcon name="book" size={30} />
                 <h3>Your homework space is ready</h3>
                 <p>
                   There are no classroom tasks yet. When your teacher adds one,
