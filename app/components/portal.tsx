@@ -45,6 +45,170 @@ type Assignment = {
   completed: boolean;
 };
 
+const studentGlassStyles = `
+  .student-portal {
+    --student-ink: #293b4b;
+    --student-muted: #71808d;
+    background: linear-gradient(125deg, #f5f7f8 0%, #eef2f6 48%, #f7f1f4 100%);
+    color: var(--student-ink);
+  }
+  .student-portal .portal-sidebar {
+    border-right: 1px solid rgba(255, 255, 255, .84);
+    background: linear-gradient(165deg, rgba(255,255,255,.84), rgba(245,248,252,.72) 58%, rgba(248,239,246,.78));
+    box-shadow: 10px 0 34px rgba(76, 96, 118, .07);
+    backdrop-filter: blur(28px) saturate(145%);
+    -webkit-backdrop-filter: blur(28px) saturate(145%);
+  }
+  .student-portal .brand-mark {
+    border: 1px solid rgba(255,255,255,.9);
+    background: linear-gradient(145deg, rgba(255,255,255,.9), rgba(248,230,165,.78));
+    box-shadow: 0 5px 14px rgba(123, 117, 76, .1);
+  }
+  .student-portal .profile-card {
+    border: 1px solid rgba(255,255,255,.84);
+    background: rgba(255,255,255,.48);
+    box-shadow: 0 8px 22px rgba(69, 89, 112, .055), inset 0 1px rgba(255,255,255,.75);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  .student-portal .side-link { color: #586a79; }
+  .student-portal .side-link:hover,
+  .student-portal .side-link:focus-visible {
+    background: rgba(255,255,255,.66);
+    box-shadow: inset 0 1px rgba(255,255,255,.9), 0 4px 13px rgba(73,94,115,.06);
+    color: #365b79;
+  }
+  .student-portal .side-link.selected {
+    border: 1px solid rgba(255,255,255,.9);
+    background: linear-gradient(110deg, rgba(219,239,232,.83), rgba(223,233,250,.75));
+    box-shadow: 0 5px 14px rgba(61,105,113,.09), inset 0 1px rgba(255,255,255,.95);
+    color: #316852;
+  }
+  .student-portal .sidebar-note {
+    border: 1px solid rgba(255,255,255,.76);
+    background: linear-gradient(145deg, rgba(255,249,218,.88), rgba(255,237,225,.76));
+    box-shadow: 0 9px 23px rgba(117, 106, 70, .08), inset 0 1px rgba(255,255,255,.8);
+  }
+  .student-portal .portal-main { background: transparent; }
+  .student-portal .eyebrow { color: #314455; }
+  .student-portal .date-line { color: #82909c; }
+  .student-portal .header-tools > div:first-child {
+    border: 1px solid rgba(255,255,255,.92);
+    background: rgba(255,255,255,.47);
+    box-shadow: 0 5px 16px rgba(70,90,112,.06), inset 0 1px rgba(255,255,255,.9);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+  }
+  .student-portal .header-tools > div:first-child a { color: #607181; }
+  .student-portal .header-tools > div:first-child a:hover { background: rgba(255,255,255,.6); color: #375d78; }
+  .student-portal .header-tools > div:first-child a[class*="bg-[#286c52]"] {
+    background: linear-gradient(130deg, #507f73, #637da0) !important;
+    box-shadow: 0 3px 10px rgba(64,104,121,.22);
+    color: white !important;
+  }
+  .student-portal .icon-button,
+  .student-portal .read-aloud {
+    border: 1px solid rgba(255,255,255,.94);
+    background: rgba(255,255,255,.66);
+    box-shadow: 0 5px 16px rgba(70,90,112,.07), inset 0 1px rgba(255,255,255,.9);
+    color: #526f84;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .student-portal .icon-button:hover,
+  .student-portal .read-aloud:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(70,90,112,.12); }
+  .student-portal .content-wrap { max-width: 1180px; }
+  .student-portal .welcome-banner {
+    border: 1px solid rgba(255,255,255,.93);
+    background: linear-gradient(112deg, rgba(255,255,255,.82), rgba(229,241,236,.7) 57%, rgba(226,235,247,.72));
+    box-shadow: 0 14px 36px rgba(72, 93, 115, .08), inset 0 1px 0 rgba(255,255,255,.96);
+    backdrop-filter: blur(28px) saturate(142%);
+    -webkit-backdrop-filter: blur(28px) saturate(142%);
+  }
+  .student-portal .welcome-copy h1 { color: #293d4b; }
+  .student-portal .welcome-copy p { color: #687b84; }
+  .student-portal .welcome-pills span {
+    border: 1px solid rgba(255,255,255,.94);
+    background: rgba(255,255,255,.58);
+    box-shadow: inset 0 1px rgba(255,255,255,.86);
+    color: #4d6e71;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .student-portal .fox-scene { filter: saturate(.9); }
+  .student-portal .section-heading h2,
+  .student-portal .side-card-title h2 { color: #344858; }
+  .student-portal .section-heading p { color: #84919c; }
+  .student-portal .text-link { color: #527f77; }
+  .student-portal .lesson-card {
+    border: 1px solid rgba(255,255,255,.87);
+    box-shadow: 0 10px 22px rgba(74, 93, 113, .065), inset 0 1px rgba(255,255,255,.82);
+    backdrop-filter: blur(18px) saturate(128%);
+    -webkit-backdrop-filter: blur(18px) saturate(128%);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .student-portal .lesson-card:hover { transform: translateY(-2px); box-shadow: 0 14px 26px rgba(74,93,113,.1), inset 0 1px rgba(255,255,255,.88); }
+  .student-portal .lesson-maths { background: linear-gradient(145deg, rgba(255,246,202,.82), rgba(250,231,176,.64)); }
+  .student-portal .lesson-english { background: linear-gradient(145deg, rgba(233,243,255,.86), rgba(214,229,248,.68)); }
+  .student-portal .lesson-science { background: linear-gradient(145deg, rgba(255,237,227,.86), rgba(248,218,207,.68)); }
+  .student-portal .lesson-icon { border: 1px solid rgba(255,255,255,.88); background: rgba(255,255,255,.6); box-shadow: inset 0 1px rgba(255,255,255,.9); color: #577581; }
+  .student-portal .up-next { border: 1px solid rgba(255,255,255,.82); background: rgba(255,255,255,.58); color: #89784a; }
+  .student-portal .lunch-note { color: #81909a; }
+  .student-portal .practice-card,
+  .student-portal .growth-card,
+  .student-portal .help-card,
+  .student-portal .timetable-card {
+    border: 1px solid rgba(255,255,255,.94);
+    background: rgba(255,255,255,.65);
+    box-shadow: 0 12px 28px rgba(70, 90, 111, .065), inset 0 1px 0 rgba(255,255,255,.92);
+    backdrop-filter: blur(22px) saturate(138%);
+    -webkit-backdrop-filter: blur(22px) saturate(138%);
+  }
+  .student-portal .featured-task {
+    border: 1px solid rgba(255,255,255,.86);
+    background: linear-gradient(115deg, rgba(223,241,226,.8), rgba(222,238,234,.62));
+    box-shadow: inset 0 1px rgba(255,255,255,.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .student-portal .task-stamp { border: 1px solid rgba(255,255,255,.85); background: rgba(255,246,206,.82); color: #7e794b; }
+  .student-portal .start-button { background: linear-gradient(135deg, #4b806f, #587e9b) !important; box-shadow: 0 5px 13px rgba(58,105,109,.2); }
+  .student-portal .start-button:hover { background: linear-gradient(135deg, #3f715f, #496d8b) !important; }
+  .student-portal .assignment-row { border-bottom-color: rgba(128,145,155,.12); }
+  .student-portal .assignment-icon { border: 1px solid rgba(255,255,255,.9); background: rgba(224,237,246,.74); color: #5d7e91; }
+  .student-portal .assignment-copy strong { color: #465a69; }
+  .student-portal .assignment-copy span { color: #84919c; }
+  .student-portal .due-pill { border: 1px solid rgba(255,255,255,.88); background: rgba(244,247,248,.8); color: #758691; }
+  .student-portal .row-action { border-color: rgba(255,255,255,.95); background: rgba(255,255,255,.72); box-shadow: 0 3px 9px rgba(68,89,110,.05); color: #55816e; }
+  .student-portal .row-action:hover { background: rgba(224,241,227,.86); }
+  .student-portal .all-done { border-color: rgba(255,255,255,.9); background: rgba(229,243,227,.74); }
+  .student-portal .progress-ring { border-color: rgba(121,178,145,.32); border-left-color: #57947b; border-bottom-color: #668fb0; color: #3d5c61; box-shadow: 0 4px 12px rgba(70,119,107,.08); }
+  .student-portal .week-dots > span.done svg { background: rgba(217,239,222,.88); }
+  .student-portal .tiny-note { color: #598477; }
+  .student-portal .badge-card {
+    border: 1px solid rgba(255,255,255,.88);
+    background: linear-gradient(125deg, rgba(255,246,208,.88), rgba(255,231,219,.7));
+    box-shadow: 0 10px 22px rgba(111,94,61,.07), inset 0 1px rgba(255,255,255,.9);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  .student-portal .help-card > p { color: #778792; }
+  .student-portal .ask-button { border-color: rgba(255,255,255,.94) !important; background: rgba(255,255,255,.6) !important; box-shadow: inset 0 1px rgba(255,255,255,.86); color: #557b78 !important; }
+  .student-portal .ask-button:hover { background: rgba(235,244,240,.82) !important; }
+  .student-portal .timetable-card > p { border-top-color: rgba(128,145,155,.14); color: #758692; }
+  .student-portal button:focus-visible,
+  .student-portal a:focus-visible { outline-color: #7198b5; }
+  @media (max-width: 760px) {
+    .student-portal .portal-sidebar { border-bottom: 1px solid rgba(255,255,255,.86); background: rgba(248,250,252,.82); box-shadow: 0 7px 22px rgba(75,93,112,.055); }
+    .student-portal .welcome-banner { overflow: hidden; }
+    .student-portal .fox-scene { opacity: .86; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .student-portal *, .student-portal *::before, .student-portal *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+  }
+`;
+
 function RoleLinks({ current }: { current: "student" | "teacher" | "parent" }) {
   return (
     <div className="flex items-center gap-1 rounded-full border border-[#dce8db] bg-white/80 p-1 shadow-sm">
@@ -77,7 +241,8 @@ function PortalFrame({
   subtitle: string;
 }) {
   return (
-    <div className="portal-page min-h-screen text-[#263b31]">
+    <div className={`portal-page min-h-screen text-[#263b31] ${current === "student" ? "student-portal" : ""}`}>
+      {current === "student" && <style>{studentGlassStyles}</style>}
       <aside className="portal-sidebar">
         <Link to="/" className="brand-lockup" aria-label="Littleleaf home">
           <span className="brand-mark"><IconLeaf size={21} stroke={2.4} /></span>
