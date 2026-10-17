@@ -18,6 +18,13 @@ import {
 } from "@/components/ui/dialog";
 import { SAMPLE_LEARNER, type Assignment } from "@/lib/school";
 import { StudentLearningHub } from "@/components/school/learning-features";
+import {
+  StudentDayExtras,
+  StudentLibraryAndClassroom,
+  StudentProgressExtras,
+  StudentQuizCentre,
+  StudentWorkExtras,
+} from "@/components/school/student-experience";
 
 import {
   filterHomework,
@@ -75,19 +82,20 @@ function dueLabel(dueDate: string) {
 
 type SpeechSource = "summary" | "task";
 type StudentView = "overview" | "learn" | "practice" | "progress" | "work" | "help";
-type LearnTool = "lessons" | "ai" | "reading";
-type PracticeTool = "homework" | "path" | "hints";
-type ProgressTool = "overview" | "mastery" | "rewards";
+type LearnTool = "lessons" | "ai" | "reading" | "library" | "classroom";
+type PracticeTool = "homework" | "quiz" | "path" | "hints";
+type ProgressTool = "overview" | "mastery" | "results" | "goals" | "rewards";
+type WorkTool = "submissions" | "portfolio" | "notebook";
 
 function studentViewForHash(hash: string): StudentView {
   const section = hash.replace(/^#/, "");
   if (section === "learn" || section === "practice" || section === "progress" || section === "work" || section === "help") {
     return section;
   }
-  if (section === "lessons" || section === "ai-companion" || section === "reading-coach") return "learn";
-  if (section === "homework" || section === "learning-path" || section === "homework-help") return "practice";
-  if (section === "mastery" || section === "rewards") return "progress";
-  if (section === "portfolio") return "work";
+  if (section === "lessons" || section === "ai-companion" || section === "reading-coach" || section === "library" || section === "classroom") return "learn";
+  if (section === "homework" || section === "quizzes" || section === "learning-path" || section === "homework-help") return "practice";
+  if (section === "mastery" || section === "results" || section === "attendance" || section === "goals" || section === "achievements" || section === "rewards") return "progress";
+  if (section === "submissions" || section === "portfolio" || section === "notebook") return "work";
   return "overview";
 }
 
@@ -108,6 +116,7 @@ export function StudentDashboard() {
   const [learnTool, setLearnTool] = useState<LearnTool>("lessons");
   const [practiceTool, setPracticeTool] = useState<PracticeTool>("homework");
   const [progressTool, setProgressTool] = useState<ProgressTool>("overview");
+  const [workTool, setWorkTool] = useState<WorkTool>("submissions");
   const [lessonIndex, setLessonIndex] = useState(0);
   const [selectedTask, setSelectedTask] = useState<Assignment | null>(null);
   const [taskFeedback, setTaskFeedback] = useState<{
@@ -129,13 +138,21 @@ export function StudentDashboard() {
     const section = location.hash.replace(/^#/, "");
     if (section === "ai-companion") setLearnTool("ai");
     if (section === "reading-coach") setLearnTool("reading");
+    if (section === "library") setLearnTool("library");
+    if (section === "classroom") setLearnTool("classroom");
     if (section === "lessons") setLearnTool("lessons");
+    if (section === "quizzes") setPracticeTool("quiz");
     if (section === "learning-path") setPracticeTool("path");
     if (section === "homework-help") setPracticeTool("hints");
     if (section === "homework") setPracticeTool("homework");
     if (section === "mastery") setProgressTool("mastery");
-    if (section === "rewards") setProgressTool("rewards");
+    if (section === "results" || section === "attendance") setProgressTool("results");
+    if (section === "goals") setProgressTool("goals");
+    if (section === "achievements" || section === "rewards") setProgressTool("rewards");
     if (section === "progress") setProgressTool("overview");
+    if (section === "submissions") setWorkTool("submissions");
+    if (section === "portfolio") setWorkTool("portfolio");
+    if (section === "notebook") setWorkTool("notebook");
   }, [location.hash]);
 
   useEffect(() => {
@@ -280,7 +297,7 @@ export function StudentDashboard() {
 
 
   return (
-    <div className={`student-dashboard sd-root sd-view-${activeView} sd-learn-${learnTool} sd-practice-${practiceTool} sd-progress-${progressTool}`}>
+    <div className={`student-dashboard sd-root sd-view-${activeView} sd-learn-${learnTool} sd-practice-${practiceTool} sd-progress-${progressTool} sd-work-${workTool}`}>
       <section
         className="sd-day"
         id="overview"
@@ -415,6 +432,8 @@ export function StudentDashboard() {
         </section>
       )}
 
+      {activeView === "overview" && <StudentDayExtras />}
+
       {activeView === "overview" && (
         <nav className="sd-home-launcher" aria-label="Choose what to do next">
           <Link to="/student#learn">
@@ -450,6 +469,8 @@ export function StudentDashboard() {
             ["lessons", "Lessons", "book"],
             ["ai", "AI tutor", "sparkles"],
             ["reading", "Reading coach", "volume"],
+            ["library", "Library", "book"],
+            ["classroom", "Classroom", "support"],
           ] as const).map(([value, label, icon]) => (
             <button
               key={value}
@@ -470,6 +491,7 @@ export function StudentDashboard() {
         <div className="sd-view-tabs" role="tablist" aria-label="Practice tools">
           {([
             ["homework", "Homework", "checklist"],
+            ["quiz", "Quizzes", "trophy"],
             ["path", "My path", "sprout"],
             ["hints", "Hints", "help"],
           ] as const).map(([value, label, icon]) => (
@@ -493,6 +515,8 @@ export function StudentDashboard() {
           {([
             ["overview", "Overview", "sprout"],
             ["mastery", "Mastery", "trophy"],
+            ["results", "Results", "clipboard"],
+            ["goals", "Goals", "sprout"],
             ["rewards", "Rewards", "sparkles"],
           ] as const).map(([value, label, icon]) => (
             <button
@@ -510,7 +534,29 @@ export function StudentDashboard() {
         </div>
       )}
 
-            <div className="sd-content-grid">
+      {activeView === "work" && (
+        <div className="sd-view-tabs" role="tablist" aria-label="My work tools">
+          {([
+            ["submissions", "Submissions", "checklist"],
+            ["portfolio", "Portfolio", "clipboard"],
+            ["notebook", "Notebook", "pencil"],
+          ] as const).map(([value, label, icon]) => (
+            <button
+              key={value}
+              type="button"
+              role="tab"
+              aria-selected={workTool === value}
+              className={workTool === value ? "is-active" : ""}
+              onClick={() => setWorkTool(value)}
+            >
+              <IOSIcon name={icon} size={17} />
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className="sd-content-grid">
         <div className="sd-main-column">
           <section
             className="sd-lessons"
@@ -908,6 +954,17 @@ export function StudentDashboard() {
           </section>
         </aside>
       </div>
+
+      {activeView === "learn" && (learnTool === "library" || learnTool === "classroom") && (
+        <StudentLibraryAndClassroom view={learnTool} />
+      )}
+      {activeView === "practice" && practiceTool === "quiz" && <StudentQuizCentre />}
+      {activeView === "progress" && progressTool === "results" && <StudentProgressExtras view="results" />}
+      {activeView === "progress" && progressTool === "goals" && <StudentProgressExtras view="goals" />}
+      {activeView === "progress" && progressTool === "rewards" && <StudentProgressExtras view="achievements" />}
+      {activeView === "work" && workTool !== "portfolio" && (
+        <StudentWorkExtras assignments={assignments} view={workTool} />
+      )}
 
       <StudentLearningHub assignments={assignments} />
 
