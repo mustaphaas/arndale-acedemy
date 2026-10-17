@@ -1,4 +1,4 @@
-import { useActionQuery } from "@agent-native/core/client/hooks";
+import { useActionQuery } from "@/lib/assignment-hooks";
 import {
   IconAlertCircle,
   IconBook2,

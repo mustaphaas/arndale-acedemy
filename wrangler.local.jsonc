@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "arndale-acedemy",
+  "compatibility_date": "2026-10-17",
+  "assets": {
+    "directory": "./dist-local",
+    "not_found_handling": "single-page-application",
+  },
+}

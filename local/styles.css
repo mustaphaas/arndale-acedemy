@@ -1,0 +1,42 @@
+.local-demo-notice {
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid #dce8db;
+  background: #f0f6ef;
+  color: #395645;
+  padding: 10px 24px;
+  font-family:
+    Inter Variable,
+    Inter,
+    system-ui,
+    sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.local-demo-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+}
+
+.local-demo-summary strong {
+  border-radius: 999px;
+  background: #dcecdc;
+  padding: 2px 9px;
+}
+
+.local-demo-error {
+  margin: 8px 0 0;
+  border-left: 3px solid #b75a37;
+  padding: 5px 10px;
+  color: #803c24;
+  background: #fff3e8;
+}
+
+@media (max-width: 760px) {
+  .local-demo-notice {
+    padding: 10px 16px;
+  }
+}

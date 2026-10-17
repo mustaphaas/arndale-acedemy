@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": ["vite/client"],
+    "paths": {
+      "@/lib/assignment-hooks": ["./local/assignment-hooks.ts"],
+      "@/lib/portal-session": ["./local/portal-session.ts"],
+      "@/*": ["./app/*"]
+    }
+  },
+  "include": ["local/**/*.ts", "local/**/*.tsx", "app/components/portal.tsx"]
+}

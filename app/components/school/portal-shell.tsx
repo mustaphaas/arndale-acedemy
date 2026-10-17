@@ -1,4 +1,3 @@
-import { signOut } from "@agent-native/core/client";
 import {
   IconArrowUpRight,
   IconBook2,
@@ -35,6 +34,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { viewForPath } from "@/lib/portal-navigation";
+import { isLocalDemo, signOut } from "@/lib/portal-session";
 import { SAMPLE_LEARNER, SCHOOL_NAME, type PortalRole } from "@/lib/school";
 
 import "@/styles/school-portal.css";
@@ -181,7 +181,15 @@ export function PortalShell({ children }: { children: ReactNode }) {
           disabled={signingOut}
         >
           <IconLogout size={20} stroke={1.65} />
-          <span>{signingOut ? "Signing out…" : "Sign out"}</span>
+          <span>
+            {isLocalDemo
+              ? signingOut
+                ? "Opening demo home…"
+                : "Demo home"
+              : signingOut
+                ? "Signing out…"
+                : "Sign out"}
+          </span>
         </button>
         <p>Learning with Littleleaf</p>
       </div>
@@ -213,7 +221,9 @@ export function PortalShell({ children }: { children: ReactNode }) {
                   {portalLabels[role]} navigation
                 </SheetTitle>
                 <SheetDescription className="sr-only">
-                  Choose a dashboard section or sign out.
+                  {isLocalDemo
+                    ? "Choose a dashboard section or return to the demo home."
+                    : "Choose a dashboard section or sign out."}
                 </SheetDescription>
                 {sidebarContents}
               </SheetContent>
