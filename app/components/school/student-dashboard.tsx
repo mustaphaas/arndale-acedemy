@@ -52,7 +52,7 @@ const SAMPLE_LESSONS = [
     subject: "Maths",
     topic: "Fun with fractions",
     time: "9:00–9:45",
-    icon: IconMathSymbols,
+    iosIcon: "math" as const,
     tone: "yellow",
     description:
       "Explore halves and quarters. See how equal parts can make one whole.",
@@ -62,7 +62,7 @@ const SAMPLE_LESSONS = [
     subject: "English",
     topic: "Story explorers",
     time: "10:00–10:45",
-    icon: IconBook,
+    iosIcon: "book" as const,
     tone: "blue",
     description:
       "Meet the characters in a story, then imagine what might happen next.",
@@ -72,7 +72,7 @@ const SAMPLE_LESSONS = [
     subject: "Science",
     topic: "How plants grow",
     time: "11:15–12:00",
-    icon: IconLeaf,
+    iosIcon: "sprout" as const,
     tone: "pink",
     description:
       "Look closely at a seedling. Discover what plants need to grow strong.",
@@ -82,10 +82,10 @@ const SAMPLE_LESSONS = [
 
 function subjectIcon(subject: string) {
   const name = subject.toLowerCase();
-  if (name.includes("math")) return IconMathSymbols;
-  if (name.includes("science")) return IconLeaf;
-  if (name.includes("english") || name.includes("read")) return IconBook;
-  return IconPencil;
+  if (name.includes("math")) return "math" as const;
+  if (name.includes("science")) return "sprout" as const;
+  if (name.includes("english") || name.includes("read")) return "book" as const;
+  return "pencil" as const;
 }
 
 function dueLabel(dueDate: string) {
@@ -121,7 +121,6 @@ export function StudentDashboard() {
   const taskTriggerRef = useRef<HTMLButtonElement | null>(null);
   const homeworkHeadingRef = useRef<HTMLHeadingElement | null>(null);
   const selectedLesson = SAMPLE_LESSONS[lessonIndex];
-  const SelectedLessonIcon = selectedLesson.icon;
   const visibleAssignments = filterHomework(assignments, filter);
 
   useEffect(() => {
@@ -366,7 +365,6 @@ export function StudentDashboard() {
               aria-label="Choose a sample lesson"
             >
               {SAMPLE_LESSONS.map((lesson, index) => {
-                const LessonIcon = lesson.icon;
                 return (
                   <Button
                     key={lesson.subject}
@@ -379,7 +377,7 @@ export function StudentDashboard() {
                   >
                     <span className="sd-lesson-top">
                       <span className="sd-lesson-icon">
-                        <LessonIcon size={23} aria-hidden="true" />
+                        <IOSIcon name={lesson.iosIcon} size={23} />
                       </span>
                       <IconArrowRight
                         className="sd-lesson-arrow"
@@ -403,7 +401,7 @@ export function StudentDashboard() {
               aria-live="polite"
               aria-atomic="true"
             >
-              <SelectedLessonIcon size={22} aria-hidden="true" />
+              <IOSIcon name={selectedLesson.iosIcon} size={22} />
               <div>
                 <h3>{selectedLesson.topic}</h3>
                 <p>{selectedLesson.description}</p>
@@ -547,14 +545,14 @@ export function StudentDashboard() {
                   {visibleAssignments.length > 0 ? (
                     <ul className="sd-assignment-list">
                       {visibleAssignments.map((assignment) => {
-                        const SubjectIcon = subjectIcon(assignment.subject);
+                        const subjectGlyph = subjectIcon(assignment.subject);
                         return (
                           <li
                             className={`sd-assignment ${assignment.completed ? "sd-is-complete" : ""}`}
                             key={assignment.id}
                           >
                             <span className="sd-assignment-icon">
-                              <SubjectIcon size={20} aria-hidden="true" />
+                              <IOSIcon name={subjectGlyph} size={20} />
                             </span>
                             <div className="sd-assignment-copy">
                               <h4>{assignment.title}</h4>
