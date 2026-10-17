@@ -14,6 +14,7 @@ import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import type { Assignment } from "@/lib/school";
 import { TeacherAIHub } from "@/components/school/learning-features";
+import { TeacherStudentWorkflows } from "@/components/school/student-experience";
 
 function AssignmentRows({
   assignments,
@@ -238,6 +239,7 @@ export function TeacherDashboard() {
           </div>
         </section>
         <TeacherAIHub assignments={assignments} />
+        <TeacherStudentWorkflows />
       </div>
     </>
   );
