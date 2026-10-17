@@ -1,17 +1,13 @@
+import { StudentDashboard } from "@/components/portal";
 import { APP_TITLE } from "@/lib/app-config";
 
 export function meta() {
   return [
     { title: APP_TITLE },
-    { name: "description", content: `${APP_TITLE} app canvas` },
+    { name: "description", content: "A cheerful school day, all in one place." },
   ];
 }
 
 export default function HomeRoute() {
-  return (
-    <div className="flex h-full min-h-0 flex-1 items-center justify-center bg-background">
-      {/* TODO: FUSION_GENERATION_APP_PLACEHOLDER replace everything here with the actual app! */}
-      <p className="text-sm text-muted-foreground">Your app here</p>
-    </div>
-  );
+  return <StudentDashboard />;
 }

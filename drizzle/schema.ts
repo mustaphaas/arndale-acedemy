@@ -24,4 +24,15 @@
 //
 // export const noteShares = createSharesTable("note_shares");
 
-export {};
+import { sql } from "drizzle-orm";
+import { boolean, pgTable, text } from "drizzle-orm/pg-core";
+
+export const assignments = pgTable("assignments", {
+  id: text("id").primaryKey(),
+  title: text("title").notNull(),
+  subject: text("subject").notNull(),
+  description: text("description").notNull().default(""),
+  dueDate: text("due_date").notNull(),
+  completed: boolean("completed").notNull().default(false),
+  createdAt: text("created_at").notNull().default(sql`now()`),
+});

@@ -38,14 +38,14 @@ visual direction — read and preserve them on every subsequent build; do not
 re-derive a new direction. The first UI pass must fill these fields in as
 part of that build, not leave them as an empty template.
 
-- Product mode: `operate` | `read` | `persuade` | `experience`
+- Product mode: `operate`
 - Audience and cadence:
-- Visual world (name + the feeling it creates):
+- Visual world (name + the feeling it creates): Littleleaf Garden — a gentle, encouraging primary-school daybook with storybook warmth.
 - Palette family + neutral undertone:
 - Type treatment:
 - Composition:
 - Shape language:
-- Anti-references (defaults this app must not drift toward):
+- Anti-references (defaults this app must not drift toward): Cold enterprise dashboards, dense tables, stark gray SaaS chrome, or overly formal school administration software.
 
 ## Agent-Native is structural, not visual
 
