@@ -2,27 +2,7 @@ import {
   useActionMutation,
   useActionQuery,
 } from "@/lib/assignment-hooks";
-import {
-  IconArrowRight,
-  IconBook,
-  IconCalendar,
-  IconCheck,
-  IconChevronDown,
-  IconCircleCheck,
-  IconClipboardList,
-  IconClock,
-  IconHeart,
-  IconInfoCircle,
-  IconLeaf,
-  IconLoader2,
-  IconMathSymbols,
-  IconPencil,
-  IconRefresh,
-  IconSparkles,
-  IconTrophy,
-  IconVolume,
-  IconVolumeOff,
-} from "@tabler/icons-react";
+import { IconLoader2 } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -388,7 +368,7 @@ export function StudentDashboard() {
                     <span className="sd-lesson-subject">{lesson.subject}</span>
                     <span className="sd-lesson-topic">{lesson.topic}</span>
                     <span className="sd-lesson-time">
-                      <IconClock size={14} aria-hidden="true" />
+                      <IOSIcon name="clock" size={14} />
                       {lesson.time}
                     </span>
                   </Button>
@@ -438,7 +418,7 @@ export function StudentDashboard() {
               </div>
             ) : homework.isError ? (
               <div className="sd-data-state sd-error-state" role="alert">
-                <IconInfoCircle size={26} aria-hidden="true" />
+                <IOSIcon name="info" size={26} />
                 <h3>Homework couldn’t load</h3>
                 <p>Try again to load the classroom task list.</p>
                 <Button
@@ -447,11 +427,10 @@ export function StudentDashboard() {
                   onClick={() => void homework.refetch()}
                   disabled={homework.isFetching}
                 >
-                  <IconRefresh
-                    className={
-                      homework.isFetching ? "sd-loading-icon" : undefined
-                    }
-                    aria-hidden="true"
+                  <IOSIcon
+                    name="refresh"
+                    size={18}
+                    className={homework.isFetching ? "sd-loading-icon" : undefined}
                   />
                   {homework.isFetching ? "Trying again…" : "Try again"}
                 </Button>
@@ -471,14 +450,14 @@ export function StudentDashboard() {
                   <article className="sd-next-task">
                     <div className="sd-next-top">
                       <span>
-                        <IconSparkles size={16} aria-hidden="true" />
+                        <IOSIcon name="sparkles" size={16} />
                         Your next small step
                       </span>
                       <span>{dueLabel(nextTask.dueDate)}</span>
                     </div>
                     <div className="sd-next-body">
                       <span className="sd-task-stamp">
-                        <IconClipboardList size={26} aria-hidden="true" />
+                        <IOSIcon name="clipboard" size={26} />
                       </span>
                       <div className="sd-next-copy">
                         <span>{nextTask.subject}</span>
@@ -500,7 +479,7 @@ export function StudentDashboard() {
                 ) : (
                   <div className="sd-all-done">
                     <span>
-                      <IconCheck size={24} aria-hidden="true" />
+                      <IOSIcon name="check" size={24} />
                     </span>
                     <div>
                       <h3>All finished for now!</h3>
@@ -564,7 +543,7 @@ export function StudentDashboard() {
                             </div>
                             {assignment.completed && (
                               <span className="sd-complete-label">
-                                <IconCircleCheck size={16} aria-hidden="true" />
+                                <IOSIcon name="checkCircle" size={16} />
                                 <span>Done</span>
                               </span>
                             )}
@@ -701,7 +680,7 @@ export function StudentDashboard() {
             <details className="sd-help-details">
               <summary>
                 Feeling a bit stuck?
-                <IconChevronDown size={17} aria-hidden="true" />
+                <IOSIcon name="chevronDown" size={17} />
               </summary>
               <ol>
                 <li>Read the instructions one more time.</li>
@@ -738,10 +717,10 @@ export function StudentDashboard() {
                 <dd>Story circle</dd>
               </div>
             </dl>
-            <a href="#lessons" className="sd-text-link">
+            <Link to="/student#lessons" className="sd-text-link">
               Back to our lessons
-              <IconArrowRight size={16} aria-hidden="true" />
-            </a>
+              <IOSIcon name="arrowRight" size={16} />
+            </Link>
           </section>
         </aside>
       </div>
@@ -810,13 +789,13 @@ export function StudentDashboard() {
                 role={taskFeedback.error ? "alert" : "status"}
               >
                 {!taskFeedback.error && (
-                  <IconCircleCheck size={19} aria-hidden="true" />
+                  <IOSIcon name="checkCircle" size={19} />
                 )}
                 {taskFeedback.message}
               </p>
             ) : selectedTask.completed ? (
               <p className="sd-task-feedback">
-                <IconCircleCheck size={19} aria-hidden="true" />
+                <IOSIcon name="checkCircle" size={19} />
                 You’ve marked this task as complete.
               </p>
             ) : (
