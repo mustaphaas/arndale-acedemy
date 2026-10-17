@@ -210,14 +210,14 @@ export function StudentQuizCentre() {
   );
 }
 
-export function StudentLibraryAndClassroom() {
+export function StudentLibraryAndClassroom({ view }: { view: "library" | "classroom" }) {
   const state = useStudentExperience();
   const [subject, setSubject] = useState("All");
   const resources = state.library.filter((item) => subject === "All" || item.subject === subject);
 
   return (
     <div className="sx-stack">
-      <section className="sx-card" id="library">
+      {view === "library" && <section className="sx-card" id="library">
         <PanelHeading
           kicker="DIGITAL LIBRARY"
           title="Explore and read"
@@ -248,9 +248,9 @@ export function StudentLibraryAndClassroom() {
             </article>
           ))}
         </div>
-      </section>
+      </section>}
 
-      <section className="sx-card" id="classroom">
+      {view === "classroom" && <section className="sx-card" id="classroom">
         <PanelHeading
           kicker="MY CLASSROOM"
           title="Willow class"
@@ -280,12 +280,12 @@ export function StudentLibraryAndClassroom() {
             <p>Safe class space — no public profiles or open chat.</p>
           </article>
         </div>
-      </section>
+      </section>}
     </div>
   );
 }
 
-export function StudentProgressExtras() {
+export function StudentProgressExtras({ view }: { view: "results" | "goals" | "achievements" }) {
   const state = useStudentExperience();
   const attendance = useMemo(() => attendanceSummary(state.attendance), [state.attendance]);
   const achievements = useMemo(() => unlockedAchievements(state), [state]);
@@ -296,7 +296,7 @@ export function StudentProgressExtras() {
 
   return (
     <div className="sx-stack">
-      <section className="sx-card" id="results">
+      {view === "results" && <section className="sx-card" id="results">
         <PanelHeading
           kicker="RESULTS"
           title="My report card"
@@ -320,9 +320,9 @@ export function StudentProgressExtras() {
             </div>
           </>
         )}
-      </section>
+      </section>}
 
-      <section className="sx-card" id="attendance">
+      {view === "results" && <section className="sx-card" id="attendance">
         <PanelHeading
           kicker="ATTENDANCE"
           title="My school days"
@@ -342,9 +342,9 @@ export function StudentProgressExtras() {
             </span>
           ))}
         </div>
-      </section>
+      </section>}
 
-      <section className="sx-card" id="goals">
+      {view === "goals" && <section className="sx-card" id="goals">
         <PanelHeading
           kicker="MY GOALS"
           title="What I’m working towards"
@@ -390,9 +390,9 @@ export function StudentProgressExtras() {
           <input type="date" value={goalDate} onChange={(event) => setGoalDate(event.target.value)} />
           <Button type="submit">Add goal</Button>
         </form>
-      </section>
+      </section>}
 
-      <section className="sx-card" id="achievements">
+      {view === "achievements" && <section className="sx-card" id="achievements">
         <PanelHeading
           kicker="ACHIEVEMENTS"
           title="My achievement centre"
@@ -409,12 +409,12 @@ export function StudentProgressExtras() {
             </article>
           ))}
         </div>
-      </section>
+      </section>}
     </div>
   );
 }
 
-export function StudentWorkExtras({ assignments }: { assignments: Assignment[] }) {
+export function StudentWorkExtras({ assignments, view }: { assignments: Assignment[]; view: "submissions" | "notebook" }) {
   const state = useStudentExperience();
   const [submissionTaskId, setSubmissionTaskId] = useState(assignments[0]?.id ?? "");
   const [answer, setAnswer] = useState("");
@@ -449,7 +449,7 @@ export function StudentWorkExtras({ assignments }: { assignments: Assignment[] }
 
   return (
     <div className="sx-stack">
-      <section className="sx-card" id="submissions">
+      {view === "submissions" && <section className="sx-card" id="submissions">
         <PanelHeading
           kicker="ASSIGNMENT SUBMISSION"
           title="Send my work"
@@ -488,9 +488,9 @@ export function StudentWorkExtras({ assignments }: { assignments: Assignment[] }
             ))}
           </div>
         </div>
-      </section>
+      </section>}
 
-      <section className="sx-card" id="notebook">
+      {view === "notebook" && <section className="sx-card" id="notebook">
         <PanelHeading
           kicker="MY NOTEBOOK"
           title="Notes & reflections"
@@ -525,7 +525,7 @@ export function StudentWorkExtras({ assignments }: { assignments: Assignment[] }
             ))}
           </div>
         </div>
-      </section>
+      </section>}
     </div>
   );
 }
