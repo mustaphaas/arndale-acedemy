@@ -623,3 +623,266 @@
     radial-gradient(ellipse at 88% 19%, rgba(247, 217, 207, 0.64), transparent 35%),
     linear-gradient(125deg, #fffaf0 0%, #f9f5eb 50%, #fbf0ea 100%);
 }
+
+
+/* iOS-style liquid-glass student shell */
+.school-student {
+  grid-template-columns: 224px minmax(0, 1fr);
+  gap: 16px;
+  min-height: 100svh;
+  padding: 18px 18px 18px 0;
+  overflow: hidden;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    Inter Variable,
+    Inter,
+    "Segoe UI",
+    sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255, 235, 177, 0.62), transparent 28%),
+    radial-gradient(circle at 18% 72%, rgba(186, 242, 240, 0.52), transparent 24%),
+    radial-gradient(circle at 48% 34%, rgba(248, 206, 222, 0.46), transparent 30%),
+    radial-gradient(circle at 84% 16%, rgba(216, 232, 255, 0.64), transparent 28%),
+    linear-gradient(135deg, #f7f7f8 0%, #f3f4f6 54%, #f8f8f9 100%);
+}
+.school-student .school-sidebar {
+  top: 18px;
+  height: calc(100svh - 36px);
+  min-height: 0;
+  margin-left: 18px;
+  padding: 22px 14px 16px;
+  overflow: hidden auto;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 28px;
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.34)),
+    radial-gradient(circle at 10% 0%, rgba(255, 235, 181, 0.34), transparent 35%),
+    radial-gradient(circle at 100% 60%, rgba(198, 235, 241, 0.28), transparent 38%);
+  box-shadow:
+    0 18px 45px rgba(67, 78, 92, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(34px) saturate(150%);
+  -webkit-backdrop-filter: blur(34px) saturate(150%);
+}
+.school-student .school-brand {
+  padding: 2px 9px 10px;
+}
+.school-student .school-brand-mark {
+  width: 39px;
+  height: 39px;
+  flex-basis: 39px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.92);
+}
+.school-student .school-brand strong {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+}
+.school-student .school-brand small {
+  font-size: 7.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+.school-student .school-nav-heading {
+  margin: 22px 11px 8px;
+  font-size: 8px;
+  font-weight: 650;
+  letter-spacing: 0.13em;
+}
+.school-student .school-nav {
+  gap: 3px;
+}
+.school-student .school-nav-link {
+  min-height: 42px;
+  gap: 10px;
+  border-radius: 12px;
+  padding: 9px 10px;
+  color: rgba(53, 66, 78, 0.83);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.12px;
+}
+.school-student .school-nav-link svg {
+  color: #64717b;
+}
+.school-student .school-nav-link:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+.school-student .school-nav-link.is-active {
+  border-color: rgba(255,255,255,.7);
+  color: #245b48;
+  background: rgba(220, 236, 216, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 4px 12px rgba(71, 101, 86, 0.06);
+}
+.school-student .school-nav-link.is-active svg {
+  color: #2e7157;
+}
+.school-student .school-sidebar-note {
+  margin: 20px 4px 16px;
+  border-radius: 18px;
+  padding: 15px 14px;
+  background: rgba(255, 233, 169, 0.58);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.62);
+  backdrop-filter: blur(20px);
+}
+.school-student .school-sidebar-footer {
+  padding-top: 2px;
+}
+.school-student .school-content {
+  padding: 8px 8px 8px 0;
+}
+.school-student .school-topbar {
+  min-height: 52px;
+  margin-bottom: 14px;
+  padding: 0 8px 0 4px;
+}
+.school-student .school-location {
+  font-size: 11px;
+}
+.school-student .school-read-aloud-button {
+  min-height: 38px;
+  gap: 7px;
+  border: 1px solid rgba(255,255,255,.74);
+  border-radius: 999px;
+  padding: 0 13px;
+  color: #355f50;
+  background: rgba(255,255,255,.52);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    0 5px 16px rgba(68, 83, 75, 0.06);
+  backdrop-filter: blur(18px) saturate(145%);
+}
+.school-student .school-header-separator {
+  background: rgba(110, 124, 136, 0.17);
+}
+.school-student .school-account-button {
+  border: 1px solid rgba(255,255,255,.64);
+  background: rgba(255,255,255,.34);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+  backdrop-filter: blur(16px);
+}
+.school-student .school-account-avatar {
+  border: 1px solid rgba(255,255,255,.85);
+  background: linear-gradient(150deg, #f6e4cf, #e9d4c0);
+}
+.school-student .school-page-footer {
+  border-top-color: rgba(255,255,255,.45);
+}
+
+/* Midnight student theme */
+.school-student.student-theme-midnight {
+  --school-ink: #eef3f8;
+  --school-muted: #9ba9b8;
+  --school-green: #73b79a;
+  --school-focus: #7fc8aa;
+  --student-banner: #1d2b26;
+  --student-banner-art: #18231f;
+  --student-accent: #7bc4a5;
+  --student-soft: #1b232b;
+  color: #eef3f8;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(79, 87, 132, 0.26), transparent 26%),
+    radial-gradient(circle at 18% 72%, rgba(35, 95, 92, 0.3), transparent 24%),
+    radial-gradient(circle at 76% 14%, rgba(71, 81, 127, 0.24), transparent 26%),
+    linear-gradient(135deg, #0e1117 0%, #11161d 56%, #0b0f14 100%);
+}
+.school-student.student-theme-midnight .school-sidebar {
+  border-color: rgba(255,255,255,.08);
+  background:
+    linear-gradient(155deg, rgba(27, 33, 43, 0.82), rgba(18, 24, 32, 0.72)),
+    radial-gradient(circle at 0% 0%, rgba(78, 95, 135, 0.14), transparent 35%);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.32),
+    inset 0 1px 0 rgba(255,255,255,.05);
+}
+.school-student.student-theme-midnight .school-brand,
+.school-student.student-theme-midnight .school-brand strong,
+.school-student.student-theme-midnight .school-account-copy strong,
+.school-student.student-theme-midnight .school-location strong {
+  color: #eef3f8;
+}
+.school-student.student-theme-midnight .school-brand small,
+.school-student.student-theme-midnight .school-account-copy small,
+.school-student.student-theme-midnight .school-location,
+.school-student.student-theme-midnight .school-nav-heading,
+.school-student.student-theme-midnight .school-sidebar-footer > p {
+  color: #8997a7;
+}
+.school-student.student-theme-midnight .school-brand-mark,
+.school-student.student-theme-midnight .school-account-button,
+.school-student.student-theme-midnight .school-read-aloud-button {
+  border-color: rgba(255,255,255,.08);
+  background: rgba(255,255,255,.055);
+  color: #dce7ef;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+}
+.school-student.student-theme-midnight .school-nav-link {
+  color: #aab6c1;
+}
+.school-student.student-theme-midnight .school-nav-link svg {
+  color: #8998a5;
+}
+.school-student.student-theme-midnight .school-nav-link:hover {
+  background: rgba(255,255,255,.05);
+}
+.school-student.student-theme-midnight .school-nav-link.is-active {
+  border-color: rgba(130, 200, 168, 0.14);
+  color: #d9f2e6;
+  background: rgba(68, 112, 94, 0.26);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+}
+.school-student.student-theme-midnight .school-nav-link.is-active svg {
+  color: #83c9aa;
+}
+.school-student.student-theme-midnight .school-sidebar-note {
+  border-color: rgba(255,255,255,.06);
+  color: #d7e1e8;
+  background: rgba(116, 92, 47, 0.18);
+}
+.school-student.student-theme-midnight .school-sidebar-note strong {
+  color: #e6dcc3;
+}
+.school-student.student-theme-midnight .school-sidebar-note p {
+  color: #a79f8e;
+}
+.school-student.student-theme-midnight .school-header-separator {
+  background: rgba(255,255,255,.09);
+}
+.school-student.student-theme-midnight .school-account-avatar {
+  border-color: rgba(255,255,255,.1);
+  color: #d9e4ed;
+  background: linear-gradient(150deg, #303744, #202732);
+}
+.school-student.student-theme-midnight .school-page-footer {
+  border-top-color: rgba(255,255,255,.06);
+  color: #7f8b98;
+}
+.school-student.student-theme-midnight .school-page-footer a {
+  color: #8fb7a6;
+}
+.school-theme-swatch.is-midnight {
+  background: linear-gradient(135deg, #111722, #253240);
+}
+
+/* Keep the student glass shell compact on smaller screens */
+@media (max-width: 800px) {
+  .school-student {
+    display: block;
+    padding: 0;
+  }
+  .school-student .school-content {
+    padding: 14px;
+  }
+  .school-student .school-mobile-menu {
+    border-color: rgba(255,255,255,.7);
+    background: rgba(255,255,255,.5);
+    backdrop-filter: blur(16px);
+  }
+}
