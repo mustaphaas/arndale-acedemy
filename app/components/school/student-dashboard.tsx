@@ -256,6 +256,13 @@ export function StudentDashboard() {
         : "Your homework is loading."
   } Take one small step at a time.`;
 
+  useEffect(() => {
+    const handleReadToMe = () => readAloud(spokenSummary, "summary");
+    window.addEventListener("arndale:read-to-me", handleReadToMe);
+    return () => window.removeEventListener("arndale:read-to-me", handleReadToMe);
+  }, [spokenSummary, speaking]);
+
+
   return (
     <div className="student-dashboard sd-root">
       <section
@@ -268,23 +275,6 @@ export function StudentDashboard() {
             <h1>My day</h1>
             <p>{SAMPLE_LEARNER.className}</p>
           </div>
-          {speechAvailable !== false && (
-            <Button
-              type="button"
-              variant="outline"
-              className="sd-read-button"
-              disabled={speechAvailable === null}
-              onClick={() => readAloud(spokenSummary, "summary")}
-              aria-pressed={speaking === "summary"}
-            >
-              {speaking === "summary" ? (
-                <IconVolumeOff aria-hidden="true" />
-              ) : (
-                <IconVolume aria-hidden="true" />
-              )}
-              {speaking === "summary" ? "Stop reading" : "Read to me"}
-            </Button>
-          )}
         </div>
 
         <div className="sd-welcome">
