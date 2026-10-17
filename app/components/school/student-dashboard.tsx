@@ -26,6 +26,8 @@ import {
 import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { IOSIcon } from "@/components/school/ios-icons";
+import { Link } from "react-router";
 import {
   Dialog,
   DialogContent,
@@ -285,11 +287,11 @@ export function StudentDashboard() {
             <p>A new day, a new little adventure. Let’s grow!</p>
             <div className="sd-welcome-pills" aria-label="Today at a glance">
               <span>
-                <IconBook size={15} aria-hidden="true" />
+                <IOSIcon name="book" size={15} />
                 {SAMPLE_LESSONS.length} lessons today
               </span>
               <span>
-                <IconPencil size={15} aria-hidden="true" />
+                <IOSIcon name="pencil" size={15} />
                 {ready ? summary.pending : "—"} tasks to try
               </span>
             </div>
@@ -313,33 +315,36 @@ export function StudentDashboard() {
       </section>
 
       <div className="sd-quick-stats" aria-label="Homework at a glance">
-        <article className="sd-stat">
+        <Link className="sd-stat sd-stat-link" to="/student#homework" aria-label="View all classroom tasks">
           <span className="sd-stat-icon sd-tone-blue">
-            <IconClipboardList aria-hidden="true" />
+            <IOSIcon name="clipboard" size={22} />
           </span>
           <div>
             <span>Classroom tasks</span>
             <strong>{ready ? summary.total : "—"}</strong>
           </div>
-        </article>
-        <article className="sd-stat">
+          <IOSIcon className="sd-stat-arrow" name="arrowRight" size={16} />
+        </Link>
+        <Link className="sd-stat sd-stat-link" to="/student#homework" aria-label="View tasks to try next">
           <span className="sd-stat-icon sd-tone-yellow">
-            <IconPencil aria-hidden="true" />
+            <IOSIcon name="pencil" size={22} />
           </span>
           <div>
             <span>To try next</span>
             <strong>{ready ? summary.pending : "—"}</strong>
           </div>
-        </article>
-        <article className="sd-stat">
+          <IOSIcon className="sd-stat-arrow" name="arrowRight" size={16} />
+        </Link>
+        <Link className="sd-stat sd-stat-link" to="/student#progress" aria-label="View completed task progress">
           <span className="sd-stat-icon sd-tone-mint">
-            <IconCircleCheck aria-hidden="true" />
+            <IOSIcon name="checkCircle" size={22} />
           </span>
           <div>
             <span>Tasks completed</span>
             <strong>{ready ? summary.completed : "—"}</strong>
           </div>
-        </article>
+          <IOSIcon className="sd-stat-arrow" name="arrowRight" size={16} />
+        </Link>
       </div>
 
       <div className="sd-content-grid">
@@ -351,9 +356,9 @@ export function StudentDashboard() {
           >
             <div className="sd-section-heading">
               <h2 id="sd-lessons-title">Let’s explore today</h2>
-              <a href="#timetable" className="sd-text-link">
-                Sample Wednesday <IconArrowRight size={16} aria-hidden="true" />
-              </a>
+              <Link to="/student#timetable" className="sd-text-link">
+                Sample Wednesday <IOSIcon name="arrowRight" size={16} />
+              </Link>
             </div>
             <div
               className="sd-lesson-grid"
@@ -611,7 +616,7 @@ export function StudentDashboard() {
           >
             <div className="sd-section-heading">
               <h2 id="sd-progress-title">Look at you grow!</h2>
-              <IconLeaf size={21} aria-hidden="true" />
+              <IOSIcon name="sprout" size={21} />
             </div>
             {!ready ? (
               <p className="sd-muted-state">
@@ -621,7 +626,7 @@ export function StudentDashboard() {
               </p>
             ) : summary.total === 0 ? (
               <div className="sd-progress-empty">
-                <IconLeaf size={32} aria-hidden="true" />
+                <IOSIcon name="sprout" size={32} />
                 <h3>Room to grow</h3>
                 <p>Your progress starts with your first classroom task.</p>
               </div>
@@ -672,7 +677,7 @@ export function StudentDashboard() {
                   </div>
                 </div>
                 <div className="sd-milestone">
-                  <IconTrophy size={24} aria-hidden="true" />
+                  <IOSIcon name="trophy" size={24} />
                   <div>
                     <h3>{milestone.title}</h3>
                     <p>{milestone.description}</p>
@@ -689,7 +694,7 @@ export function StudentDashboard() {
           >
             <div className="sd-section-heading">
               <h2 id="sd-help-title">A helping hand</h2>
-              <IconHeart size={21} aria-hidden="true" />
+              <IOSIcon name="heart" size={21} />
             </div>
             <p>
               Great learners ask questions. You don’t have to work it all out on
@@ -718,7 +723,7 @@ export function StudentDashboard() {
           >
             <div className="sd-section-heading">
               <h2 id="sd-timetable-title">After our lessons</h2>
-              <IconCalendar size={20} aria-hidden="true" />
+              <IOSIcon name="calendar" size={20} />
             </div>
             <p className="sd-timetable-label">Sample Wednesday afternoon</p>
             <dl>
