@@ -22,8 +22,8 @@ import { DemoHome } from "./demo-home";
 import "../app/global.css";
 import "./styles.css";
 
-function LocalDemoNotice() {
-  const { error } = useAssignmentSnapshot();
+function LocalDemoSync() {
+  useAssignmentSnapshot();
   useEffect(() => {
     const refreshFromTab = (event: StorageEvent) => {
       if (event.key === STORAGE_KEY || event.key === null)
@@ -38,20 +38,7 @@ function LocalDemoNotice() {
     };
   }, []);
 
-  return (
-    <div className="local-demo-notice">
-      <div className="local-demo-summary">
-        <strong>Local demo</strong>
-        <span>Sample profiles · Homework is saved in this browser only.</span>
-        <span>Role switching is for testing.</span>
-      </div>
-      {error && (
-        <p className="local-demo-error" role="alert">
-          {error}
-        </p>
-      )}
-    </div>
-  );
+  return null;
 }
 
 function RouteScroll() {
@@ -78,7 +65,7 @@ if (!root) throw new Error("The portal could not find its root element.");
 createRoot(root).render(
   <BrowserRouter>
     <AppToolkitProvider>
-      <LocalDemoNotice />
+      <LocalDemoSync />
       <RouteScroll />
       <Routes>
         <Route path="/" element={<DemoHome />} />
