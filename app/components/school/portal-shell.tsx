@@ -163,7 +163,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
             aria-current={section === target ? "location" : undefined}
             onClick={() => setMenuOpen(false)}
           >
-            <Icon size={20} stroke={1.65} />
+            <Icon size={19} stroke={role === "student" ? 1.45 : 1.65} />
             <span>{label}</span>
             {section === target && (
               <span className="school-active-dot" aria-hidden="true" />
