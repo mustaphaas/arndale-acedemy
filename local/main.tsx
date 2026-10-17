@@ -18,6 +18,7 @@ import { AppToolkitProvider } from "@/components/ui/toolkit-provider";
 import { browserAssignments, useAssignmentSnapshot } from "./assignment-hooks";
 import { STORAGE_KEY } from "./assignment-store";
 import { LEARNING_STORAGE_KEY, refreshLearningStateFromStorage } from "@/lib/learning-intelligence";
+import { STUDENT_EXPERIENCE_KEY, refreshStudentExperience } from "@/lib/student-experience";
 import { DemoHome } from "./demo-home";
 
 import "../app/global.css";
@@ -30,10 +31,13 @@ function LocalDemoSync() {
         browserAssignments.refresh();
       if (event.key === LEARNING_STORAGE_KEY || event.key === null)
         refreshLearningStateFromStorage();
+      if (event.key === STUDENT_EXPERIENCE_KEY || event.key === null)
+        refreshStudentExperience();
     };
     const refreshOnFocus = () => {
       browserAssignments.refresh();
       refreshLearningStateFromStorage();
+      refreshStudentExperience();
     };
     window.addEventListener("storage", refreshFromTab);
     window.addEventListener("focus", refreshOnFocus);
